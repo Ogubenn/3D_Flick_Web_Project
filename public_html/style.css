@@ -1,0 +1,2992 @@
+/*
+=========================================
+3D FLICK - MOBİL RESPONSIVE CSS
+=========================================
+Mobil-first yaklaşımla tasarlanmış, tüm cihazlarda 
+mükemmel çalışan responsive stylesheet
+*/
+
+/* 
+-----------------------------------------
+CSS RESET & BASE STYLES
+-----------------------------------------
+Tarayıcılar arası tutarlılık için reset
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 
+-----------------------------------------
+ROOT VARIABLES (CSS Custom Properties)
+-----------------------------------------
+Tema renkleri ve boyutlar için merkezi değişkenler
+*/
+:root {
+    /* Renk paleti */
+    --primary-gradient: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+    --secondary-gradient: linear-gradient(45deg, #FF6B6B 0%, #4ECDC4 100%);
+    --waiting-gradient: linear-gradient(45deg, #FF6B6B 0%, #FF8E8E 100%);
+    --success-gradient: linear-gradient(45deg, #4CAF50, #45a049);
+    --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    
+    /* Metin renkleri */
+    --text-primary: #333;
+    --text-secondary: #555;
+    --text-light: #fff;
+    --text-error: #e74c3c;
+    --text-help: #666;
+    --text-color: #333; /* YENİ: Genel metin rengi */
+    
+    /* Glass morphism ve şeffaflık */
+    --glass-bg: rgba(255, 255, 255, 0.15); /* YENİ: Glass background */
+    --modal-bg: rgba(255, 255, 255, 0.95); /* YENİ: Modal background */
+    --primary-color: #f093fb; /* YENİ: Ana tema rengi */
+    
+    /* Border ve gölge renkleri */
+    --border-light: #e0e0e0;
+    --border-focus: #f093fb;
+    --shadow-primary: rgba(240, 147, 251, 0.4);
+    --shadow-success: rgba(76, 175, 80, 0.4);
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+    
+    /* Boyutlar ve spacing */
+    --border-radius-small: 8px;
+    --border-radius-medium: 15px;
+    --border-radius-large: 25px;
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    
+    /* Font boyutları */
+    --font-size-small: 12px;
+    --font-size-normal: 14px;
+    --font-size-medium: 16px;
+    --font-size-large: 18px;
+    --font-size-xl: 24px;
+    
+    /* Z-index değerleri */
+    --z-modal: 1000;
+    --z-message: 1001;
+    --z-overlay: 999;
+    
+    /* Animasyon süreleri */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+}
+
+/* 
+-----------------------------------------
+BODY & GLOBAL STYLES
+-----------------------------------------
+Ana sayfa layout'u ve global stiller
+*/
+body {
+    /* Font ailesi ve temel ayarlar */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                 Oxygen, Ubuntu, Cantarell, sans-serif;
+    
+    /* Mobil için optimize edilmiş line-height */
+    line-height: 1.5;
+    
+    /* Gradyan arkaplan */
+    background: var(--background-gradient);
+    
+    /* Tema geçişi için transition - DÜZELTİLDİ */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    
+    /* Minimum yükseklik - viewport height */
+    min-height: 100vh;
+    
+    /* Mobil için touch optimizasyonu */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: 100%;
+    
+    /* Overflow kontrol (mobil scroll bounce önleme) */
+    overflow-x: hidden;
+    
+    /* Renk ve font düzgünlüğü */
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+-----------------------------------------
+MAIN CONTAINER
+-----------------------------------------
+Ana içerik container'ı - Flexbox ile ortalama
+*/
+.main-container {
+    /* Flexbox ayarları */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Tam yükseklik */
+    min-height: 100vh;
+    
+    /* Padding - mobilde kenarlardan boşluk */
+    padding: var(--spacing-lg);
+    
+    /* Responsive padding */
+    padding-top: calc(var(--spacing-xl) * 2);
+    padding-bottom: calc(var(--spacing-xl) * 2);
+}
+
+/* 
+-----------------------------------------
+BUBBLY BUTTON - ANA BUTON
+-----------------------------------------
+Ana etkileşim butonu - Mobil touch-friendly
+*/
+.bubbly-button {
+    /* Font ve metin ayarları */
+    font-family: inherit;
+    font-size: var(--font-size-medium);
+    font-weight: bold;
+    color: var(--text-light);
+    text-align: center;
+    
+    /* Boyut ayarları - Mobilde daha büyük */
+    padding: var(--spacing-lg) var(--spacing-xl);
+    min-width: 200px;
+    min-height: 60px;
+    
+    /* Görünüm ayarları */
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: var(--border-radius-large);
+    
+    /* Gölge efekti */
+    box-shadow: 0 4px 15px var(--shadow-primary);
+    
+    /* Cursor ve etkileşim */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    
+    /* Animasyon geçişleri */
+    transition: all var(--transition-normal) ease;
+    
+    /* Touch cihazlar için optimizasyon */
+    touch-action: manipulation;
+    user-select: none;
+    
+    /* Erişilebilirlik için outline */
+    outline: none;
+}
+
+/* Buton hover efekti (desktop) */
+.bubbly-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
+}
+
+/* Buton active efekti (touch cihazlar için) */
+.bubbly-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px var(--shadow-primary);
+}
+
+/* Buton focus efekti (erişilebilirlik) */
+.bubbly-button:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* Buton disabled durumu */
+.bubbly-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 
+Buton animasyon efekti - Tıklama anında ripple effect
+*/
+.bubbly-button.animate::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s linear;
+}
+
+/* Ripple animasyon keyframes */
+@keyframes ripple {
+    to {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+}
+
+/* 
+-----------------------------------------
+SUCCESS MESSAGE - BAŞARI MESAJLARI
+-----------------------------------------
+Kullanıcı geri bildirim mesajları
+*/
+.success-message {
+    /* Görünürlük kontrol */
+    display: none;
+    opacity: 0;
+    
+    /* Konum - Mobilde üstte sabit */
+    position: fixed;
+    top: var(--spacing-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Z-index - En üstte görünmesi için */
+    z-index: var(--z-message);
+    
+    /* Görünüm */
+    background: var(--success-gradient);
+    color: var(--text-light);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-large);
+    
+    /* Gölge */
+    box-shadow: 0 4px 15px var(--shadow-success);
+    
+    /* Animasyon */
+    transition: opacity var(--transition-normal) ease;
+    animation: successSlideIn var(--transition-normal) ease-out;
+    
+    /* Mobil için max genişlik */
+    max-width: calc(100vw - 2 * var(--spacing-lg));
+    
+    /* Metin ayarları */
+    text-align: center;
+    font-weight: bold;
+    font-size: var(--font-size-normal);
+}
+
+.success-message p {
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Mesaj tiplerine göre renkler */
+.success-message.success {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border-left: 4px solid #2E7D32;
+}
+
+.success-message.error {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    border-left: 4px solid #c62828;
+    white-space: pre-line; /* \n karakterlerini satır sonu olarak göster */
+}
+
+.success-message.warning {
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    border-left: 4px solid #e65100;
+}
+
+.success-message.info {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    border-left: 4px solid #1565C0;
+}
+
+/* Success mesaj animasyonu */
+@keyframes successSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* 
+-----------------------------------------
+ADVANCED MODAL SYSTEM - MODERN GLASSMORPHISM DESIGN
+-----------------------------------------
+*/
+
+/* Body scroll lock when modal is open */
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0px; /* Prevent layout shift */
+}
+
+/* Modern modal overlay */
+.modal {
+    /* Visibility */
+    display: none;
+    opacity: 0;
+    
+    /* Full page overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Z-index */
+    z-index: var(--z-modal);
+    
+    /* Advanced backdrop */
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.6) 50%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    backdrop-filter: blur(15px) saturate(1.8);
+    -webkit-backdrop-filter: blur(15px) saturate(1.8);
+    
+    /* Smooth transitions */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Center content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    
+    /* Touch scroll for mobile */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Modal states with enhanced animations */
+.modal.show {
+    display: flex;
+    opacity: 1;
+    animation: modalBackdropFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.modal.hiding {
+    animation: modalBackdropFadeOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Glassmorphism modal content */
+.modal-content {
+    /* Glassmorphism background */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    
+    /* Modern border */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    
+    /* Sizing */
+    width: 100%;
+    max-width: 540px;
+    max-height: 85vh;
+    
+    /* Spacing */
+    padding: 2.5rem;
+    margin: 0;
+    
+    /* Typography */
+    color: var(--text-primary);
+    
+    /* Advanced shadows */
+    box-shadow: 
+        0 32px 64px rgba(0, 0, 0, 0.12),
+        0 16px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    
+    /* Smooth animation */
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Custom scrollbar */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+/* Modal content show state with smooth animation */
+.modal.show .modal-content {
+    animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.modal.hiding .modal-content {
+    animation: modalSlideOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Custom scrollbar for modal content */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Advanced Modal Animations */
+@keyframes modalSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        filter: blur(5px);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(10px) scale(0.98);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes modalSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-10px) scale(1.02);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+        filter: blur(5px);
+    }
+}
+
+@keyframes modalBackdropFadeIn {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(15px);
+    }
+}
+
+@keyframes modalBackdropFadeOut {
+    from {
+        opacity: 1;
+        backdrop-filter: blur(15px);
+    }
+    to {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+}
+
+/* 
+-----------------------------------------
+ENHANCED MODAL ELEMENTS
+-----------------------------------------
+*/
+
+/* Modal headers */
+.modal h2, .modal-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+}
+
+/* Modal descriptions */
+.modal p, .modal-body p {
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 1rem;
+}
+
+/* Modern close button */
+.close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    
+    /* Appearance */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Styling */
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    
+    /* Transitions */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Remove default styles */
+    text-decoration: none;
+    user-select: none;
+}
+
+/* Close button hover effects */
+.close:hover, .close:focus {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.2);
+    color: #ff4444;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.15);
+}
+
+.close:active {
+    transform: scale(0.95);
+    background: rgba(255, 0, 0, 0.2);
+    min-height: 44px;
+    
+    /* Animasyon */
+    transition: color var(--transition-normal) ease;
+    
+    /* Erişilebilirlik */
+    outline: none;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--text-error);
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* 
+-----------------------------------------
+FORM STYLES - FORM ELEMENTLERİ
+-----------------------------------------
+*/
+
+/* Modal başlığı */
+h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-primary);
+    font-size: var(--font-size-large);
+    font-weight: 600;
+}
+
+/* Form grupları */
+.form-group {
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+/* Form etiketleri */
+label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: var(--font-size-normal);
+}
+
+/* Form input'ları */
+.form-input,
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    /* Boyut */
+    width: 100%;
+    padding: var(--spacing-md);
+    
+    /* Görünüm */
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-small);
+    font-size: var(--font-size-normal);
+    
+    /* Animasyon */
+    transition: border-color var(--transition-normal) ease,
+                box-shadow var(--transition-normal) ease;
+    
+    /* Mobil optimizasyonu */
+    -webkit-appearance: none;
+    appearance: none;
+    
+    /* Font */
+    font-family: inherit;
+}
+
+/* Input focus durumu */
+.form-input:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(240, 147, 251, 0.1);
+}
+
+/* Input hata durumu */
+.form-input:invalid:not(:placeholder-shown) {
+    border-color: var(--text-error);
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+/* Zorunlu alan işaretleyicisi */
+.required {
+    color: var(--text-error);
+    font-weight: bold;
+}
+
+/* Form yardım metni */
+.form-help {
+    display: block;
+    margin-top: var(--spacing-xs);
+    color: var(--text-help);
+    font-size: var(--font-size-small);
+    line-height: 1.3;
+}
+
+/* 
+-----------------------------------------
+CHECKBOX STYLES - CHECKBOX GRUPLARı
+-----------------------------------------
+*/
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.form-checkbox,
+.checkbox-group input[type="checkbox"] {
+    /* Boyut - Touch friendly */
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    margin-top: 2px;
+    
+    /* Görünüm */
+    border: 2px solid var(--border-light);
+    border-radius: 3px;
+    
+    /* Flex shrink önleme */
+    flex-shrink: 0;
+    
+    /* Cursor */
+    cursor: pointer;
+}
+
+.checkbox-label,
+.checkbox-group label {
+    margin: 0;
+    flex: 1;
+    font-size: var(--font-size-small);
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+/* 
+-----------------------------------------
+SUBMIT BUTTON - FORM GÖNDER BUTONU
+-----------------------------------------
+*/
+.login-btn {
+    /* Boyut - Mobilde tam genişlik */
+    width: 100%;
+    padding: var(--spacing-md);
+    
+    /* Görünüm */
+    background: var(--primary-gradient);
+    color: var(--text-light);
+    border: none;
+    border-radius: var(--border-radius-small);
+    
+    /* Font */
+    font-size: var(--font-size-medium);
+    font-weight: bold;
+    font-family: inherit;
+    
+    /* Etkileşim */
+    cursor: pointer;
+    
+    /* Animasyon */
+    transition: all var(--transition-normal) ease;
+    
+    /* Mobil optimizasyon */
+    touch-action: manipulation;
+    
+    /* Margin */
+    margin-top: var(--spacing-sm);
+    
+    /* Minimum yükseklik - Touch friendly */
+    min-height: 48px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--shadow-primary);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.login-btn:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* 
+-----------------------------------------
+FORM FOOTER
+-----------------------------------------
+*/
+.form-footer {
+    text-align: center;
+    margin-top: var(--spacing-md);
+    color: var(--text-help);
+    font-size: var(--font-size-small);
+}
+
+/* 
+-----------------------------------------
+RESPONSIVE BREAKPOINTS
+-----------------------------------------
+Farklı ekran boyutları için medya sorguları
+*/
+
+/* Küçük telefonlar (320px - 480px) */
+@media screen and (max-width: 480px) {
+    :root {
+        --spacing-xs: 3px;
+        --spacing-sm: 8px;
+        --spacing-md: 12px;
+        --spacing-lg: 16px;
+        --spacing-xl: 24px;
+        --font-size-small: 11px;
+        --font-size-normal: 13px;
+        --font-size-medium: 15px;
+    }
+    
+    .main-container {
+        padding: var(--spacing-md);
+        padding-top: var(--spacing-xl);
+    }
+    
+    .bubbly-button {
+        min-width: 180px;
+        min-height: 56px;
+        font-size: var(--font-size-normal);
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+    
+    .modal-content {
+        margin: 2% auto;
+        padding: var(--spacing-lg);
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .success-message {
+        top: var(--spacing-sm);
+        font-size: var(--font-size-small);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+}
+
+/* Orta boy telefonlar (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .bubbly-button {
+        min-width: 220px;
+        min-height: 64px;
+        font-size: var(--font-size-large);
+    }
+    
+    .modal-content {
+        width: 85%;
+        padding: var(--spacing-xl);
+    }
+}
+
+/* Tabletler (769px - 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .main-container {
+        padding: var(--spacing-xl);
+    }
+    
+    .bubbly-button {
+        min-width: 250px;
+        min-height: 70px;
+        font-size: var(--font-size-large);
+    }
+    
+    .modal-content {
+        width: 70%;
+        max-width: 600px;
+    }
+}
+
+/* Desktop (1025px+) */
+@media screen and (min-width: 1025px) {
+    .main-container {
+        padding: 50px;
+    }
+    
+    .bubbly-button {
+        min-width: 280px;
+        min-height: 80px;
+        font-size: var(--font-size-large);
+    }
+    
+    .modal-content {
+        width: 60%;
+        max-width: 500px;
+    }
+    
+    /* Desktop'ta hover efektleri daha belirgin */
+    .bubbly-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(240, 147, 251, 0.7);
+    }
+}
+
+/* 
+-----------------------------------------
+LANDSCAPE ORIENTATION - YATAY MOD
+-----------------------------------------
+Mobil cihazlarda yatay mod optimizasyonu
+*/
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .main-container {
+        min-height: auto;
+        padding: var(--spacing-sm);
+        justify-content: flex-start;
+        padding-top: var(--spacing-md);
+    }
+    
+    .bubbly-button {
+        min-height: 50px;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .modal-content {
+        margin: 2% auto;
+        max-height: 90vh;
+        padding: var(--spacing-md);
+    }
+    
+    .success-message {
+        top: var(--spacing-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-small);
+    }
+}
+
+/* 
+-----------------------------------------
+HIGH DPI DISPLAYS - YÜKSEK ÇÖZÜNÜRLüK
+-----------------------------------------
+Retina ve yüksek DPI ekranlar için optimizasyon
+*/
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+       screen and (min-resolution: 192dpi),
+       screen and (min-resolution: 2dppx) {
+    
+    .bubbly-button {
+        /* Daha keskin kenarlar */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* 
+-----------------------------------------
+ACCESSIBILITY - ERİŞİLEBİLİRLİK
+-----------------------------------------
+Görme engelli ve erişilebilirlik optimizasyonu
+*/
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --border-light: #000;
+        --text-primary: #000;
+        --text-secondary: #000;
+    }
+    
+    .bubbly-button {
+        border: 2px solid #000;
+    }
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #fff;
+        --text-secondary: #ccc;
+        --background-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        --border-light: #555;
+    }
+    
+    .modal-content {
+        background-color: #2c3e50;
+        color: white;
+    }
+}
+
+/*
+==========================================
+🎨 YENİ ÖZELLİKLER - ADVANCED UI 
+==========================================
+*/
+
+/* Kontrol Paneli - Sağ üst köşe */
+.control-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    color: var(--text-color);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+/* Achievement Popup Animasyonu */
+.achievement-popup {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 2000;
+    min-width: 280px;
+    display: none;
+}
+
+.achievement-popup.show {
+    display: block;
+    top: 20px;
+    opacity: 1;
+    animation: achievementBounce 0.6s ease;
+}
+
+@keyframes achievementBounce {
+    0% { transform: translateX(-50%) translateY(-20px) scale(0.8); }
+    50% { transform: translateX(-50%) translateY(5px) scale(1.05); }
+    100% { transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.achievement-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.achievement-icon {
+    font-size: 2em;
+    animation: achievementGlow 2s infinite;
+}
+
+@keyframes achievementGlow {
+    0%, 100% { text-shadow: 0 0 5px #ffd700; }
+    50% { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; }
+}
+
+.achievement-text h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.achievement-text p {
+    margin: 0;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+/* Streak Display - Günlük seri göstergesi */
+.streak-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    font-weight: 600;
+    color: var(--text-color);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.streak-display.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.streak-icon {
+    font-size: 1.2em;
+    animation: streakFlame 2s ease-in-out infinite;
+}
+
+@keyframes streakFlame {
+    0%, 100% { transform: scale(1) rotate(-2deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
+}
+
+.streak-count {
+    font-size: 1.5em;
+    color: #ff6b35;
+    font-weight: bold;
+}
+
+.streak-text {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* İstatistik Paneli */
+.stats-modal .modal-content {
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.stats-content h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.stat-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.stat-info h3 {
+    font-size: 0.9em;
+    margin: 0 0 8px 0;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
+    display: block;
+}
+
+/* Achievement Liste Sistemi */
+.achievement-list {
+    margin-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+}
+
+.achievement-list h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.achievements-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.achievement-item {
+    background: var(--glass-bg);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.achievement-item.unlocked {
+    border-left-color: #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.achievement-item.locked {
+    opacity: 0.5;
+    border-left-color: #757575;
+}
+
+.achievement-badge {
+    font-size: 1.5em;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+}
+
+.achievement-details h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.9em;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.achievement-details p {
+    margin: 0;
+    font-size: 0.8em;
+    opacity: 0.7;
+    color: var(--text-color);
+}
+
+/* Particle Canvas - Efektler için */
+.particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --primary-color: #bb86fc;
+    --secondary-color: #03dac6;
+    --background-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    --text-color: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --modal-bg: rgba(30, 30, 60, 0.95);
+    --button-shadow: 0 8px 32px rgba(187, 134, 252, 0.3);
+}
+
+[data-theme="dark"] .bubbly-button {
+    background: linear-gradient(45deg, #bb86fc 0%, #03dac6 100%);
+    color: #000;
+}
+
+[data-theme="dark"] .control-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Dark theme modal styles */
+[data-theme="dark"] .modal {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.6) 0%,
+        rgba(0, 0, 0, 0.8) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+[data-theme="dark"] .modal-content {
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(25px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    box-shadow: 
+        0 32px 64px rgba(0, 0, 0, 0.4),
+        0 16px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .modal h2, 
+[data-theme="dark"] .modal-header h2 {
+    color: #ffffff;
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .modal p, 
+[data-theme="dark"] .modal-body p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .close {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .close:hover, 
+[data-theme="dark"] .close:focus {
+    background: rgba(255, 0, 0, 0.2);
+    border-color: rgba(255, 0, 0, 0.3);
+    color: #ff6666;
+}
+
+[data-theme="dark"] .modal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Screen Reader Only Class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/*
+==========================================
+📱 MOBİL RESPONSIVE - YENİ ÖZELLİKLER
+==========================================
+*/
+
+@media (max-width: 768px) {
+    .control-panel {
+        top: 10px;
+        right: 10px;
+        flex-direction: row;
+        gap: 8px;
+    }
+    
+    .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .achievement-popup {
+        left: 10px;
+        right: 10px;
+        transform: none;
+        min-width: auto;
+    }
+    
+    .achievement-popup.show {
+        transform: none;
+    }
+    
+    .achievements-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .streak-display {
+        margin-top: 15px;
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .control-panel {
+        top: 5px;
+        right: 5px;
+        gap: 5px;
+    }
+    
+    .control-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9em;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .achievement-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .achievement-text h3 {
+        font-size: 1em;
+    }
+}
+
+/* 
+==========================================
+� ADVANCED GAMEPLAY FEATURES
+==========================================
+Combo system, Power-ups, Challenge mode styles
+*/
+
+/* Combo Display */
+.combo-display {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+    z-index: 1002;
+    pointer-events: none;
+    display: none;
+}
+
+.combo-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.combo-count {
+    font-size: 3rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.combo-multiplier {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+.combo-animation {
+    animation: comboScale 0.5s ease-out;
+}
+
+@keyframes comboScale {
+    0% { transform: translate(-50%, -50%) scale(0.8); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Power-up Container */
+.powerup-container {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1001;
+}
+
+.powerup-active {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: powerupPulse 2s ease-in-out infinite;
+}
+
+.powerup-icon {
+    font-size: 1.5rem;
+}
+
+.powerup-timer {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    background: rgba(240, 147, 251, 0.1);
+    padding: 2px 6px;
+    border-radius: 8px;
+}
+
+@keyframes powerupPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Challenge Display */
+.challenge-display {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    padding: 15px 20px;
+    min-width: 300px;
+    max-width: 90vw;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    z-index: 1001;
+    display: none;
+}
+
+.challenge-header h3 {
+    margin: 0 0 5px 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.challenge-header p {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.challenge-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(240, 147, 251, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary-gradient);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    min-width: 50px;
+    text-align: right;
+}
+
+.challenge-timer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background: rgba(255, 107, 107, 0.1);
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+/* Tooltip System */
+.tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1003;
+}
+
+.tooltip::before {
+    content: '';
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip:hover::after,
+.tooltip:hover::before {
+    opacity: 1;
+}
+
+/* Progress Bars for Stats */
+.stat-progress {
+    width: 100%;
+    height: 6px;
+    background: rgba(240, 147, 251, 0.2);
+    border-radius: 3px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.stat-progress-fill {
+    height: 100%;
+    background: var(--primary-gradient);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+/* Advanced Button States */
+.bubbly-button.power-up-active {
+    animation: powerUpGlow 1s ease-in-out infinite alternate;
+    border: 3px solid #ffd700;
+}
+
+@keyframes powerUpGlow {
+    from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+    to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4); }
+}
+
+.bubbly-button.combo-mode {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    background-size: 300% 300%;
+    animation: comboGradient 2s ease infinite;
+}
+
+@keyframes comboGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Mobile Optimizations for New Features */
+@media (max-width: 768px) {
+    .combo-display {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .combo-count {
+        font-size: 2.5rem;
+    }
+    
+    .powerup-container {
+        top: 60px;
+        right: 10px;
+    }
+    
+    .powerup-active {
+        padding: 8px;
+        min-width: 70px;
+    }
+    
+    .challenge-display {
+        top: 10px;
+        padding: 12px 15px;
+        min-width: 280px;
+    }
+    
+    .challenge-header h3 {
+        font-size: 1rem;
+    }
+}
+
+/* 
+==========================================
+�🎨 CSS DOSYA SONU - ADVANCED FEATURES  
+==========================================
+Toplam: 1200+ satır modern CSS
+Yeni özellikler: Control panel, Achievement system, 
+Statistics, Dark mode, Particle effects, Responsive design,
+Combo system, Power-ups, Challenge mode, Tooltips, 3D Model Modal
+==========================================
+*/
+
+/*
+==========================================
+🎯 3D MODEL MODAL STİLLERİ
+==========================================
+*/
+
+.model-modal .modal-content {
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: var(--border-radius-lg);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.model-preview-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md);
+}
+
+.model-preview {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-placeholder {
+    text-align: center;
+    color: white;
+}
+
+.model-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    display: block;
+    animation: rotateModel 3s ease-in-out infinite;
+}
+
+@keyframes rotateModel {
+    0%, 100% { transform: rotateY(0deg) scale(1); }
+    50% { transform: rotateY(180deg) scale(1.1); }
+}
+
+.model-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--primary-color);
+}
+
+.model-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.download-btn, .share-btn {
+    flex: 1;
+    min-width: 200px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-normal);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.share-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.model-footer {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-help);
+}
+
+#nextModelTime {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+}
+
+.achievement-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: linear-gradient(135deg, #ff6b6b, #ffa726);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 20px;
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .model-modal .modal-content {
+    background: rgba(18, 18, 18, 0.95);
+    color: white;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .model-modal .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .model-actions {
+        flex-direction: column;
+    }
+}
+
+/*
+==========================================
+🏆 GENİŞLETİLMİŞ ACHIEVEMENT SİSTEMİ
+==========================================
+*/
+
+/* Achievement Rarity Renkleri */
+.rarity-common {
+    border-left: 4px solid #95a5a6;
+    background: linear-gradient(135deg, rgba(149, 165, 166, 0.1) 0%, rgba(149, 165, 166, 0.05) 100%);
+}
+
+.rarity-rare {
+    border-left: 4px solid #3498db;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(52, 152, 219, 0.05) 100%);
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.3);
+}
+
+.rarity-epic {
+    border-left: 4px solid #9b59b6;
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(155, 89, 182, 0.05) 100%);
+    box-shadow: 0 0 20px rgba(155, 89, 182, 0.4);
+    animation: epicPulse 2s ease-in-out infinite;
+}
+
+.rarity-legendary {
+    border-left: 4px solid #f39c12;
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.1) 0%, rgba(243, 156, 18, 0.05) 100%);
+    box-shadow: 0 0 25px rgba(243, 156, 18, 0.5);
+    animation: legendaryGlow 2s ease-in-out infinite;
+}
+
+.rarity-mythic {
+    border-left: 4px solid #e74c3c;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(231, 76, 60, 0.05) 100%);
+    box-shadow: 0 0 30px rgba(231, 76, 60, 0.6);
+    animation: mythicFlare 1.5s ease-in-out infinite;
+}
+
+@keyframes epicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes legendaryGlow {
+    0%, 100% { box-shadow: 0 0 25px rgba(243, 156, 18, 0.5); }
+    50% { box-shadow: 0 0 35px rgba(243, 156, 18, 0.8); }
+}
+
+@keyframes mythicFlare {
+    0%, 100% { 
+        box-shadow: 0 0 30px rgba(231, 76, 60, 0.6);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(231, 76, 60, 0.9);
+        transform: scale(1.03);
+    }
+}
+
+/* Achievement Categories */
+.achievement-category {
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.category-title {
+    font-size: var(--font-size-medium);
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+    text-align: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(240, 147, 251, 0.1);
+    border-radius: var(--border-radius-sm);
+}
+
+.category-achievements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-item:hover {
+    transform: translateY(-2px);
+}
+
+.achievement-item.locked {
+    opacity: 0.6;
+    filter: grayscale(50%);
+}
+
+.achievement-item.unlocked {
+    opacity: 1;
+    filter: none;
+}
+
+.achievement-icon-small {
+    font-size: 2rem;
+    margin-right: var(--spacing-md);
+    min-width: 50px;
+    text-align: center;
+}
+
+.achievement-info {
+    flex: 1;
+}
+
+.achievement-info h5 {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: var(--font-size-normal);
+    font-weight: 600;
+}
+
+.achievement-info p {
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: var(--font-size-small);
+    opacity: 0.8;
+}
+
+.achievement-points {
+    font-size: var(--font-size-small);
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.unlock-badge, .lock-badge {
+    font-size: 1.5rem;
+    margin-left: var(--spacing-sm);
+}
+
+.unlock-badge {
+    color: #4CAF50;
+}
+
+.lock-badge {
+    opacity: 0.5;
+}
+
+/* 
+-----------------------------------------
+ADVANCED ACHIEVEMENT SYSTEM STYLES
+-----------------------------------------
+*/
+
+/* Başarım popup bildirimleri */
+.achievement-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7));
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    max-width: 350px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.achievement-popup.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.achievement-popup .achievement-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.achievement-popup .achievement-icon {
+    font-size: 2.5rem;
+    margin-right: 15px;
+    animation: bounce-achievement 0.6s ease-in-out;
+}
+
+.achievement-popup .achievement-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0;
+}
+
+.achievement-popup .achievement-description {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    margin: 5px 0 0 0;
+}
+
+/* Rarity-based popup styles */
+.achievement-popup.rarity-common { 
+    border-left: 6px solid #888;
+    background: linear-gradient(135deg, rgba(136,136,136,0.2), rgba(136,136,136,0.1));
+}
+
+.achievement-popup.rarity-rare { 
+    border-left: 6px solid #4A90E2;
+    background: linear-gradient(135deg, rgba(74,144,226,0.3), rgba(74,144,226,0.1));
+    box-shadow: 0 20px 40px rgba(74,144,226,0.3), 0 0 20px rgba(74,144,226,0.2);
+    animation: pulse-border 2s infinite;
+}
+
+.achievement-popup.rarity-epic { 
+    border-left: 6px solid #9B59B6;
+    background: linear-gradient(135deg, rgba(155,89,182,0.3), rgba(155,89,182,0.1));
+    box-shadow: 0 20px 40px rgba(155,89,182,0.4), 0 0 25px rgba(155,89,182,0.3);
+    animation: glow-pulse 2s ease-in-out infinite alternate;
+}
+
+.achievement-popup.rarity-legendary { 
+    border-left: 6px solid #F39C12;
+    background: linear-gradient(135deg, rgba(243,156,18,0.3), rgba(243,156,18,0.1));
+    box-shadow: 0 20px 40px rgba(243,156,18,0.5), 0 0 30px rgba(243,156,18,0.4);
+    animation: golden-shine 2s linear infinite;
+}
+
+.achievement-popup.rarity-mythic { 
+    border-left: 6px solid #E74C3C;
+    background: linear-gradient(135deg, rgba(231,76,60,0.4), rgba(231,76,60,0.2));
+    box-shadow: 0 20px 40px rgba(231,76,60,0.6), 0 0 35px rgba(231,76,60,0.5), inset 0 0 30px rgba(255,255,255,0.1);
+    animation: mythic-rainbow 3s linear infinite, mythic-pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Başarım animasyonları */
+@keyframes bounce-achievement {
+    0%, 20%, 60%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    80% { transform: translateY(-5px); }
+}
+
+@keyframes pulse-border {
+    0%, 100% { border-left-width: 6px; }
+    50% { border-left-width: 10px; }
+}
+
+@keyframes glow-pulse {
+    0% { box-shadow: 0 20px 40px rgba(155,89,182,0.4), 0 0 25px rgba(155,89,182,0.3); }
+    100% { box-shadow: 0 25px 50px rgba(155,89,182,0.6), 0 0 35px rgba(155,89,182,0.5); }
+}
+
+@keyframes golden-shine {
+    0% { box-shadow: 0 20px 40px rgba(243,156,18,0.5), 0 0 30px rgba(243,156,18,0.4); }
+    25% { box-shadow: 0 25px 50px rgba(243,156,18,0.7), 0 0 40px rgba(255,215,0,0.6); }
+    50% { box-shadow: 0 30px 60px rgba(255,215,0,0.8), 0 0 50px rgba(255,215,0,0.7); }
+    75% { box-shadow: 0 25px 50px rgba(243,156,18,0.7), 0 0 40px rgba(255,215,0,0.6); }
+    100% { box-shadow: 0 20px 40px rgba(243,156,18,0.5), 0 0 30px rgba(243,156,18,0.4); }
+}
+
+@keyframes mythic-rainbow {
+    0% { border-left-color: #E74C3C; }
+    16.66% { border-left-color: #F39C12; }
+    33.33% { border-left-color: #F1C40F; }
+    50% { border-left-color: #27AE60; }
+    66.66% { border-left-color: #3498DB; }
+    83.33% { border-left-color: #9B59B6; }
+    100% { border-left-color: #E74C3C; }
+}
+
+@keyframes mythic-pulse {
+    0% { 
+        box-shadow: 0 20px 40px rgba(231,76,60,0.6), 0 0 35px rgba(231,76,60,0.5), inset 0 0 30px rgba(255,255,255,0.1);
+        transform: scale(1);
+    }
+    100% { 
+        box-shadow: 0 30px 60px rgba(231,76,60,0.8), 0 0 50px rgba(231,76,60,0.7), inset 0 0 40px rgba(255,255,255,0.2);
+        transform: scale(1.02);
+    }
+}
+
+/* Enhanced achievement cards for existing list */
+.achievement-item.unlocked {
+    animation: unlock-glow 0.8s ease-out;
+}
+
+@keyframes unlock-glow {
+    0% { 
+        background: rgba(255,255,255,0.05);
+        transform: scale(1);
+    }
+    50% { 
+        background: rgba(76,175,80,0.2);
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(76,175,80,0.3);
+    }
+    100% { 
+        background: rgba(255,255,255,0.08);
+        transform: scale(1);
+        box-shadow: 0 0 0px rgba(76,175,80,0);
+    }
+}
+
+/* Rarity borders for achievement items */
+.achievement-item.rarity-rare {
+    border-left: 4px solid #4A90E2;
+    background: linear-gradient(135deg, rgba(74,144,226,0.1), rgba(74,144,226,0.05));
+}
+
+.achievement-item.rarity-epic {
+    border-left: 4px solid #9B59B6;
+    background: linear-gradient(135deg, rgba(155,89,182,0.1), rgba(155,89,182,0.05));
+}
+
+.achievement-item.rarity-legendary {
+    border-left: 4px solid #F39C12;
+    background: linear-gradient(135deg, rgba(243,156,18,0.1), rgba(243,156,18,0.05));
+}
+
+.achievement-item.rarity-mythic {
+    border-left: 4px solid #E74C3C;
+    background: linear-gradient(135deg, rgba(231,76,60,0.15), rgba(231,76,60,0.05));
+}
+
+/* Mobile achievement popup adjustments */
+@media (max-width: 768px) {
+    .achievement-popup {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        transform: translateY(-100px);
+    }
+    
+    .achievement-popup.show {
+        transform: translateY(0);
+    }
+    
+    .achievement-popup .achievement-icon {
+        font-size: 2rem;
+        margin-right: 10px;
+    }
+    
+    .achievement-popup .achievement-title {
+        font-size: 1rem;
+    }
+}
+
+/* 
+-----------------------------------------
+COUNTDOWN TIMER STYLES
+-----------------------------------------
+*/
+.countdown-timer {
+    background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(255,140,0,0.1));
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,69,0,0.3);
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(255,69,0,0.15);
+    animation: countdown-pulse 2s ease-in-out infinite alternate;
+}
+
+.countdown-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.countdown-icon {
+    font-size: 1.5rem;
+    animation: countdown-spin 4s linear infinite;
+}
+
+.countdown-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ff4500;
+}
+
+.countdown-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.time-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ff4500;
+    background: rgba(255,255,255,0.9);
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 50px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    font-family: 'Courier New', monospace;
+}
+
+.time-label {
+    font-size: 0.75rem;
+    color: rgba(255,69,0,0.8);
+    font-weight: 500;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.time-separator {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff4500;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+}
+
+/* Countdown animations */
+@keyframes countdown-pulse {
+    0% { 
+        box-shadow: 0 8px 32px rgba(255,69,0,0.15), 0 0 0 0 rgba(255,69,0,0.4);
+    }
+    100% { 
+        box-shadow: 0 12px 40px rgba(255,69,0,0.25), 0 0 0 10px rgba(255,69,0,0);
+    }
+}
+
+@keyframes countdown-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Dark theme countdown */
+[data-theme="dark"] .countdown-timer {
+    background: linear-gradient(135deg, rgba(255,69,0,0.2), rgba(255,140,0,0.15));
+    border-color: rgba(255,69,0,0.4);
+}
+
+[data-theme="dark"] .countdown-title {
+    color: #ff6b35;
+}
+
+[data-theme="dark"] .time-value {
+    background: rgba(20,20,20,0.9);
+    color: #ff6b35;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .time-label {
+    color: rgba(255,107,53,0.8);
+}
+
+[data-theme="dark"] .time-separator {
+    color: #ff6b35;
+}
+
+/* Mobile countdown adjustments */
+@media (max-width: 768px) {
+    .countdown-timer {
+        margin: 1rem;
+        padding: 1rem;
+        max-width: 350px;
+    }
+    
+    .time-value {
+        font-size: 1.5rem;
+        padding: 0.3rem;
+        min-width: 40px;
+    }
+    
+    .time-unit {
+        min-width: 50px;
+    }
+    
+    .countdown-display {
+        gap: 0.25rem;
+    }
+}
+
+/*
+=========================================
+GÜNLÜK LİMİT SİSTEMİ - YENİ TASARIM
+=========================================
+Orijinal günlük limit konsepti için özel tasarım
+*/
+
+/* Ana konteyner yapısı */
+.main-container {
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: calc(100vh - 80px);
+    margin-top: 80px;
+}
+
+/* Sol sidebar - Kullanıcı bilgileri */
+.left-sidebar {
+    background: var(--card-background);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    height: fit-content;
+    box-shadow: var(--shadow-medium);
+}
+
+.user-info-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--gradient-primary);
+    border-radius: 15px;
+    color: white;
+}
+
+.user-avatar {
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.stat-icon {
+    font-size: 1rem;
+}
+
+.daily-limit-card {
+    background: var(--gradient-secondary);
+    border-radius: 15px;
+    padding: 1.5rem;
+    color: white;
+}
+
+.daily-limit-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.status-icon {
+    font-size: 1.2rem;
+}
+
+.next-reset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.countdown {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #FFE066;
+}
+
+/* Merkez içerik - Ana generator */
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.generator-section {
+    background: var(--card-background);
+    border-radius: 25px;
+    padding: 3rem;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-large);
+    max-width: 600px;
+    width: 100%;
+}
+
+.generator-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.generator-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    line-height: 1.5;
+}
+
+.daily-button {
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 20px;
+    padding: 2rem 3rem;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-medium);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-height: 100px;
+    width: 100%;
+    justify-content: center;
+}
+
+.daily-button:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-large);
+}
+
+.daily-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.daily-button:disabled {
+    background: #666;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.button-icon {
+    font-size: 2rem;
+}
+
+.button-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.button-text {
+    font-size: 1.2rem;
+}
+
+.button-subtext {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.generator-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--card-background);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.feature-icon {
+    font-size: 1.2rem;
+}
+
+.feature-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Sağ sidebar - Bilgi ve işlemler */
+.right-sidebar {
+    background: var(--card-background);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    height: fit-content;
+    box-shadow: var(--shadow-medium);
+}
+
+.sidebar-section {
+    margin-bottom: 2rem;
+}
+
+.sidebar-section:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.achievement-preview {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--gradient-secondary);
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.achievement-icon {
+    font-size: 1.5rem;
+}
+
+.achievement-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.achievement-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.achievement-desc {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.sidebar-btn {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.sidebar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.global-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.global-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: var(--gradient-accent);
+    border-radius: 10px;
+    color: white;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.action-btn.small {
+    background: var(--card-background);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.action-btn.small:hover {
+    background: var(--hover-color);
+    transform: translateY(-1px);
+}
+
+/* Durum kartları */
+.user-status-section {
+    background: var(--card-background);
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-medium);
+}
+
+.daily-status-card {
+    background: var(--gradient-primary);
+    border-radius: 15px;
+    padding: 2rem;
+    color: white;
+}
+
+.status-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.status-icon {
+    font-size: 2rem;
+}
+
+.status-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.status-value, .countdown-timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+.quick-actions-section {
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+.action-buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.quick-btn {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.quick-btn:hover {
+    background: var(--hover-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-icon {
+    font-size: 2rem;
+}
+
+.btn-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Limit kullanıldı mesajı */
+.limit-used-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-background);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-large);
+    z-index: 1000;
+}
+
+.limit-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.limit-icon {
+    font-size: 4rem;
+    opacity: 0.7;
+}
+
+.limit-text h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.limit-text p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.next-available {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--gradient-primary);
+    border-radius: 10px;
+    color: white;
+}
+
+.limit-countdown {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Responsive tasarım güncellemeleri */
+@media (max-width: 1200px) {
+    .main-container {
+        grid-template-columns: 250px 1fr 250px;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .left-sidebar, .right-sidebar {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 60px;
+    }
+    
+    .left-sidebar, .right-sidebar {
+        order: 2;
+    }
+    
+    .center-content {
+        order: 1;
+    }
+    
+    .generator-section {
+        padding: 2rem;
+    }
+    
+    .daily-button {
+        padding: 1.5rem 2rem;
+        min-height: 80px;
+    }
+    
+    .generator-features {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .status-info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .action-buttons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        padding: 0.5rem;
+        margin-top: 50px;
+    }
+    
+    .generator-section {
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+    
+    .generator-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .daily-button {
+        padding: 1rem 1.5rem;
+        min-height: 70px;
+    }
+    
+    .button-text {
+        font-size: 1rem;
+    }
+    
+    .button-subtext {
+        font-size: 0.8rem;
+    }
+    
+    .user-info-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .action-buttons-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .limit-used-message {
+        margin: 1rem;
+        padding: 2rem;
+    }
+    
+    .limit-icon {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .generator-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .daily-button {
+        padding: 0.75rem 1rem;
+        min-height: 60px;
+        font-size: 0.9rem;
+    }
+    
+    .button-icon {
+        font-size: 1.5rem;
+    }
+    
+    .feature-item {
+        padding: 0.75rem;
+    }
+    
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}

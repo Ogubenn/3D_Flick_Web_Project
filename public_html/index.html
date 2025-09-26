@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Flick - Günlük Ücretsiz 3D Model</title>
+    <meta name="description" content="Günde bir kere ücretsiz rastgele 3D model oluştur ve indir!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    <link rel="stylesheet" href="./new-style.css?v=2.0">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🎲</span>
+                <span class="logo-text">3D Flick</span>
+            </div>
+            <div class="nav-controls">
+                <button class="nav-btn" id="themeToggle" title="Tema değiştir">🌙</button>
+                <button class="nav-btn" id="soundToggle" title="Ses aç/kapat">🔊</button>
+                <button class="nav-btn" id="infoToggle" data-panel="infoPanel" title="Bilgi ve yardım">ℹ️</button>
+                <button class="nav-btn nav-login-btn" id="navLoginBtn" title="Giriş Yap">👤</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <section class="daily-status-section">
+            <div class="status-card">
+                <div class="status-info">
+                    <div class="status-item">
+                        <span class="status-icon">📅</span>
+                        <div class="status-details">
+                            <span class="status-label">Günlük Durum</span>
+                            <span class="status-value" id="dailyStatusText">Hakkınız var!</span>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-icon">⏰</span>
+                        <div class="status-details">
+                            <span class="status-label">Sonraki Reset</span>
+                            <span class="status-countdown" id="countdownTimer">24:00:00</span>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-icon">🏆</span>
+                        <div class="status-details">
+                            <span class="status-label">Toplam Model</span>
+                            <span class="status-value" id="totalModelsCount">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="generator-section">
+            <div class="generator-container">
+                <div class="generator-header">
+                    <h1 class="generator-title">Günlük 3D Model Üreticisi</h1>
+                    <p class="generator-subtitle">Her gün bir kere ücretsiz • Rastgele • STL formatında</p>
+                </div>
+
+                <div class="generator-main">
+                    <button class="main-generator-btn" id="generateBtn">
+                        <div class="btn-content">
+                            <div class="btn-icon btn-icon">🎯</div>
+                            <div class="btn-text">
+                                <div class="btn-primary-text btn-text">GÜNLÜK MODELİNİ OLUŞTUR</div>
+                                <div class="btn-secondary-text">Tıklayın ve STL dosyanızı indirin</div>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">⏰</span>
+                            <span class="feature-text">24 saatte bir hak</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎲</span>
+                            <span class="feature-text">Tamamen rastgele</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📁</span>
+                            <span class="feature-text">STL formatında</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💯</span>
+                            <span class="feature-text">Ücretsiz</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    <div class="success-content">
+                        <div class="success-icon">🎉</div>
+                        <div class="success-text">
+                            <div class="success-title">Günlük Modeliniz Hazır!</div>
+                            <div class="success-description">3D model başarıyla oluşturuldu ve indiriliyor...</div>
+                            <div class="success-note">Yarın tekrar gelebilirsiniz!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="limit-message" id="limitMessage">
+                    <div class="limit-content">
+                        <div class="limit-icon">⏳</div>
+                        <div class="limit-text">
+                            <div class="limit-title">Günlük Hakkınızı Kullandınız</div>
+                            <div class="limit-description">24 saatte bir yeni model oluşturabilirsiniz</div>
+                            <div class="limit-countdown">
+                                <span>Sonraki model:</span>
+                                <span id="limitCountdownTimer">23:59:45</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-actions-section">
+            <div class="actions-container">
+                <button class="action-btn" id="achievementsBtn" data-panel="achievementsPanel">
+                    <span class="action-icon">🏆</span>
+                    <div class="action-info">
+                        <div class="action-title">Başarımlar</div>
+                        <div class="action-subtitle" id="achievementProgress">0/35 Açıldı</div>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </button>
+                
+                <button class="action-btn" id="statsBtn" data-panel="statsPanel">
+                    <span class="action-icon">📊</span>
+                    <div class="action-info">
+                        <div class="action-title">İstatistikler</div>
+                        <div class="action-subtitle">Detaylarınızı görün</div>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </button>
+
+                <button class="action-btn" id="uploadBtn" data-panel="uploadPanel">
+                    <span class="action-icon">📤</span>
+                    <div class="action-info">
+                        <div class="action-title">STL Yükle</div>
+                        <div class="action-subtitle" id="uploadLimitDisplay">Bugün 0/10 yüklendi</div>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </button>
+
+                <button class="action-btn" id="galleryBtn" data-panel="galleryPanel">
+                    <span class="action-icon">🖼️</span>
+                    <div class="action-info">
+                        <div class="action-title">Figür Galerim</div>
+                        <div class="action-subtitle" id="galleryCount">0 figür</div>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </button>
+                
+                <button class="action-btn" id="downloadBtn">
+                    <span class="action-icon">📥</span>
+                    <div class="action-info">
+                        <div class="action-title">Son Modeli İndir</div>
+                        <div class="action-subtitle">Tekrar indir</div>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </button>
+                
+                <button class="action-btn" id="shareBtn">
+                    <span class="action-icon">🔗</span>
+                    <div class="action-info">
+                        <div class="action-title">Siteyi Paylaş</div>
+                        <div class="action-subtitle">Arkadaşlarına anlat</div>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="expandable-panel" id="achievementsPanel">
+            <div class="panel-header">
+                <h2>🏆 Başarımlar</h2>
+                <button class="panel-close" id="achievementsClose">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="achievements-summary">
+                    <div class="summary-stat">
+                        <span class="stat-number" id="unlockedCount">0</span>
+                        <span class="stat-label">Açılan</span>
+                    </div>
+                    <div class="summary-stat">
+                        <span class="stat-number" id="totalPoints">0</span>
+                        <span class="stat-label">Puan</span>
+                    </div>
+                    <div class="summary-stat">
+                        <span class="stat-number">35</span>
+                        <span class="stat-label">Toplam</span>
+                    </div>
+                </div>
+                <div class="achievements-grid" id="achievementsGrid">
+                </div>
+            </div>
+        </section>
+
+        <section class="expandable-panel" id="statsPanel">
+            <div class="panel-header">
+                <h2>📊 İstatistikler</h2>
+                <button class="panel-close" id="statsClose">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="dailyModelsStats">0</div>
+                            <div class="stat-label">Bugünkü Model</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="totalModelsStats">0</div>
+                            <div class="stat-label">Toplam Model</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="expandable-panel" id="infoPanel">
+            <div class="panel-header">
+                <h2>ℹ️ Bilgi & Yardım</h2>
+                <button class="panel-close" id="infoClose">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="info-sections">
+                    <div class="info-section">
+                        <h3>🎯 Nasıl Çalışır?</h3>
+                        <ul>
+                            <li>Her gün bir kere ücretsiz 3D model oluşturabilirsiniz</li>
+                            <li>Model otomatik olarak STL formatında indirilir</li>
+                            <li>24 saat sonra yeni hakkınız gelir</li>
+                            <li>Başarımlar kazanarak ilerleme kaydedin</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="expandable-panel" id="loginPanel">
+            <div class="panel-header">
+                <h2>🔐 Daha Fazla Model</h2>
+                <button class="panel-close" id="loginClose">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="login-sections">
+                    <div class="login-main">
+                        <div class="login-icon">⏰</div>
+                        <h3>Günlük Limitiniz Doldu</h3>
+                        <p>24 saatte bir ücretsiz model hakkınız bulunmaktadır.</p>
+                        
+                        <div class="premium-features">
+                            <h4>🌟 Premium ile Daha Fazlası:</h4>
+                            <ul>
+                                <li>✨ Sınırsız model oluşturma</li>
+                                <li>🎨 Özel model türleri</li>
+                                <li>📁 Gelişmiş dosya formatları</li>
+                                <li>⚡ Öncelikli işleme</li>
+                            </ul>
+                        </div>
+
+                        <div class="login-actions">
+                            <button class="btn-primary" id="loginBtn">
+                                <span>🔑 Giriş Yap</span>
+                            </button>
+                            <button class="btn-secondary" id="registerBtn">
+                                <span>📝 Kayıt Ol</span>
+                            </button>
+                        </div>
+
+                        <div class="countdown-info">
+                            <span>🕒 Sonraki ücretsiz model:</span>
+                            <span id="loginCountdown" class="countdown-timer">23:45:12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STL Upload Panel -->
+        <section class="expandable-panel" id="uploadPanel">
+            <div class="panel-header">
+                <h2>📤 STL Figür Yükle</h2>
+                <button class="panel-close" id="uploadPanelClose">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="upload-container">
+                    <div class="upload-limits">
+                        <div class="limit-info">
+                            <span class="limit-text">Günlük limit: </span>
+                            <span class="limit-counter" id="dailyUploadCounter">0/10</span>
+                        </div>
+                        <div class="limit-reset" id="limitResetTime">Sıfırlanma: 00:00:00</div>
+                    </div>
+
+                    <div class="upload-dropzone" id="stlDropzone">
+                        <div class="dropzone-content">
+                            <div class="dropzone-icon">📁</div>
+                            <div class="dropzone-title">STL Dosyasını Sürükle & Bırak</div>
+                            <div class="dropzone-subtitle">veya dosya seçmek için tıklayın</div>
+                            <div class="dropzone-formats">Sadece .stl formatı kabul edilir</div>
+                            <div class="dropzone-size">Maksimum dosya boyutu: 50MB</div>
+                        </div>
+                        <input type="file" id="stlFileInput" accept=".stl" style="display: none;">
+                    </div>
+
+                    <div class="upload-progress" id="uploadProgress" style="display: none;">
+                        <div class="progress-info">
+                            <span class="progress-filename" id="uploadingFileName">dosya.stl</span>
+                            <span class="progress-percentage" id="uploadPercentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="uploadProgressBar"></div>
+                        </div>
+                        <div class="progress-size" id="uploadSizeInfo">0 / 0 MB</div>
+                    </div>
+
+                    <div class="upload-preview" id="uploadPreview" style="display: none;">
+                        <h3>📋 Dosya Bilgileri</h3>
+                        <div class="preview-info">
+                            <div class="info-row">
+                                <span class="info-label">Dosya Adı:</span>
+                                <span class="info-value" id="previewFileName">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Dosya Boyutu:</span>
+                                <span class="info-value" id="previewFileSize">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Yükleme Tarihi:</span>
+                                <span class="info-value" id="previewUploadDate">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Format:</span>
+                                <span class="info-value">STL</span>
+                            </div>
+                        </div>
+                        <div class="preview-actions">
+                            <button class="btn btn-success" id="confirmUpload">✅ Yüklemeyi Onayla</button>
+                            <button class="btn btn-cancel" id="cancelUpload">❌ İptal Et</button>
+                        </div>
+                    </div>
+
+                    <div class="upload-tips">
+                        <h4>💡 Yükleme İpuçları:</h4>
+                        <ul>
+                            <li>Sadece .stl formatındaki dosyalar kabul edilir</li>
+                            <li>Maksimum dosya boyutu 50MB'dir</li>
+                            <li>Günde en fazla 10 figür yükleyebilirsiniz</li>
+                            <li>Yüklediğiniz figürler galerinizde saklanır</li>
+                            <li>Başarılı yüklemeler için başarım kazanırsınız</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Panel -->
+        <section class="expandable-panel" id="galleryPanel">
+            <div class="panel-header">
+                <h2>🖼️ Figür Galerim</h2>
+                <button class="panel-close" id="galleryPanelClose">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="gallery-container">
+                    <div class="gallery-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalUploadedCount">0</span>
+                            <span class="stat-label">Toplam Figür</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="todayUploadedCount">0</span>
+                            <span class="stat-label">Bugün Yüklenen</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalUploadSize">0 MB</span>
+                            <span class="stat-label">Toplam Boyut</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-filters">
+                        <button class="filter-btn active" data-filter="all">🌟 Tümü</button>
+                        <button class="filter-btn" data-filter="today">📅 Bugün</button>
+                        <button class="filter-btn" data-filter="week">📆 Bu Hafta</button>
+                        <button class="filter-btn" data-filter="large">📏 Büyük Dosyalar</button>
+                    </div>
+
+                    <div class="gallery-grid" id="galleryGrid">
+                        <div class="empty-gallery">
+                            <div class="empty-icon">📁</div>
+                            <div class="empty-title">Henüz figür yüklenmemiş</div>
+                            <div class="empty-subtitle">İlk STL dosyanızı yükleyerek başlayın!</div>
+                            <button class="btn btn-primary" onclick="document.querySelector('#uploadBtn').click()">
+                                📤 İlk Figürü Yükle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="expandable-panel" id="loginFormPanel">
+            <div class="panel-header">
+                <h2>🔑 Giriş Yap</h2>
+                <button class="panel-close" id="loginFormClose">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="auth-form-container">
+                    <form class="auth-form" id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">📧 E-posta</label>
+                            <input type="email" id="loginEmail" name="email" required placeholder="ornek@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">🔒 Şifre</label>
+                            <input type="password" id="loginPassword" name="password" required placeholder="Şifrenizi girin">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary auth-btn">
+                                <span>🔓 Giriş Yap</span>
+                            </button>
+                            <button type="button" class="btn-link" id="forgotPasswordBtn">
+                                <span>Şifremi Unuttum</span>
+                            </button>
+                        </div>
+                        <div class="form-footer">
+                            <span>Hesabınız yok mu?</span>
+                            <button type="button" class="btn-link" id="switchToRegister">
+                                <span>Kayıt Ol</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="expandable-panel" id="registerFormPanel">
+            <div class="panel-header">
+                <h2>📝 Kayıt Ol</h2>
+                <button class="panel-close" id="registerFormClose">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="auth-form-container">
+                    <form class="auth-form" id="registerForm">
+                        <div class="form-group">
+                            <label for="registerName">👤 Ad Soyad</label>
+                            <input type="text" id="registerName" name="name" required placeholder="Adınızı ve soyadınızı girin">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">📧 E-posta</label>
+                            <input type="email" id="registerEmail" name="email" required placeholder="ornek@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">🔒 Şifre</label>
+                            <input type="password" id="registerPassword" name="password" required placeholder="En az 8 karakter">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">🔐 Şifre Tekrar</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Şifrenizi tekrar girin">
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">
+                                    <a href="#" class="terms-link">Kullanım Şartları</a> ve 
+                                    <a href="#" class="privacy-link">Gizlilik Politikası</a>'nı kabul ediyorum
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary auth-btn">
+                                <span>✨ Kayıt Ol</span>
+                            </button>
+                        </div>
+                        <div class="form-footer">
+                            <span>Zaten hesabınız var mı?</span>
+                            <button type="button" class="btn-link" id="switchToLogin">
+                                <span>Giriş Yap</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">3D Model Oluşturuluyor...</div>
+            <div class="loading-progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/achievements-new.js?v=2.0"></script>
+    <script src="./js/audio.js?v=2.0"></script>
+    <script src="./js/app.js?v=2.0"></script>
+</body>
+</html>

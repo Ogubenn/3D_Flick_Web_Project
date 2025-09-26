@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Flick Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-btn { padding: 10px 20px; margin: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .result { margin-top: 20px; padding: 10px; background: #f8f9fa; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 3D Flick Debug Test</h1>
+    
+    <button class="test-btn" onclick="testAchievements()">Test Achievements Button</button>
+    <button class="test-btn" onclick="testConsole()">Test Console</button>
+    
+    <div id="result" class="result">Test sonuçları burada görünecek...</div>
+    
+    <script>
+        function testAchievements() {
+            const btn = document.querySelector('[data-panel="achievementsPanel"]');
+            document.getElementById('result').innerHTML = `
+                <strong>Achievements Button Test:</strong><br>
+                Button bulundu: ${btn ? '✅ Evet' : '❌ Hayır'}<br>
+                ${btn ? `ID: ${btn.id}, data-panel: ${btn.dataset.panel}` : 'Button bulunamadı'}
+            `;
+        }
+        
+        function testConsole() {
+            console.log('🧪 Test console mesajı');
+            document.getElementById('result').innerHTML = `
+                <strong>Console Test:</strong><br>
+                ✅ Console mesajı gönderildi. F12 ile Developer Tools'u açın.
+            `;
+        }
+        
+        console.log('🚀 Test sayfası yüklendi');
+    </script>
+</body>
+</html>
