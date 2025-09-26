@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test - Debug</title>
+    <style>
+        /* Basit Modal CSS Test */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modal Test - Debug</h1>
+    
+    <button data-modal="testModal">Test Modal Aç</button>
+    <button onclick="manualTest()">Manuel Test</button>
+    
+    <!-- Test Modal -->
+    <div class="modal-overlay" id="testModal">
+        <div class="modal-content">
+            <button class="modal-close">×</button>
+            <h2>Test Modal</h2>
+            <p>Bu modal çalışıyor mu?</p>
+        </div>
+    </div>
+
+    <script>
+        console.log('Debug modal sistemi başlıyor...');
+        
+        // Manual test fonksiyonu
+        function manualTest() {
+            console.log('Manuel test başlatıldı');
+            const modal = document.getElementById('testModal');
+            console.log('Modal element:', modal);
+            if (modal) {
+                modal.classList.add('show');
+                console.log('Modal class listesi:', modal.classList);
+            }
+        }
+        
+        // Modal sistemi
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM yüklendi');
+            
+            function openModal(modalId) {
+                console.log('openModal çağrıldı:', modalId);
+                const modal = document.getElementById(modalId);
+                console.log('Modal bulundu:', modal);
+                
+                if (modal && modal.classList.contains('modal-overlay')) {
+                    console.log('Modal overlay class mevcut');
+                    modal.classList.add('show');
+                    console.log('Show class eklendi, classList:', modal.classList);
+                } else {
+                    console.log('Modal overlay class bulunamadı');
+                }
+            }
+            
+            function closeModal() {
+                console.log('closeModal çağrıldı');
+                const modal = document.querySelector('.modal-overlay.show');
+                if (modal) {
+                    modal.classList.remove('show');
+                    console.log('Modal kapatıldı');
+                }
+            }
+            
+            // Event delegation
+            document.addEventListener('click', function(e) {
+                console.log('Click eventi:', e.target);
+                
+                const target = e.target.closest('[data-modal]');
+                if (target) {
+                    console.log('Data-modal bulundu:', target.getAttribute('data-modal'));
+                    e.preventDefault();
+                    const modalId = target.getAttribute('data-modal');
+                    openModal(modalId);
+                    return;
+                }
+                
+                if (e.target.classList.contains('modal-close') || e.target.classList.contains('modal-overlay')) {
+                    console.log('Modal kapatma eventi');
+                    closeModal();
+                    return;
+                }
+            });
+            
+            console.log('Modal sistemi hazır');
+        });
+    </script>
+</body>
+</html>

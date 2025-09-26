@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3D Flick - Günlük Ücretsiz 3D Model</title>
-    <meta name="description" content="Günde bir kere ücretsiz rastgele 3D model oluştur ve indir!">
+    <meta name                <div class="modal-header">
+                    <h2 class="modal-title">ℹ️ Bilgi ve Yardım</h2>
+                    <button class="modal-close">×</button>
+                </div>scription" content="Günde bir kere ücretsiz rastgele 3D model oluştur ve indir!">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
     <link rel="stylesheet" href="./new-style.css?v=2.0">
 </head>
 <body>
     <nav class="top-nav">
         <div class="nav-container">
-            <div class="logo">
+            <div class="logo" id="navLogo" style="cursor: pointer;">
                 <span class="logo-icon">🎲</span>
                 <span class="logo-text">3D Flick</span>
             </div>
             <div class="nav-controls">
                 <button class="nav-btn" id="themeToggle" title="Tema değiştir">🌙</button>
-                <button class="nav-btn" id="soundToggle" title="Ses aç/kapat">🔊</button>
-                <button class="nav-btn" id="infoToggle" data-panel="infoPanel" title="Bilgi ve yardım">ℹ️</button>
+                <button class="nav-btn" id="infoToggle" data-modal="infoModal" title="Bilgi ve yardım">ℹ️</button>
                 <button class="nav-btn nav-login-btn" id="navLoginBtn" title="Giriş Yap">👤</button>
             </div>
         </div>
@@ -120,7 +122,7 @@
 
         <section class="quick-actions-section">
             <div class="actions-container">
-                <button class="action-btn" id="achievementsBtn" data-panel="achievementsPanel">
+                <button class="action-btn" id="achievementsBtn" data-modal="achievementsModal">
                     <span class="action-icon">🏆</span>
                     <div class="action-info">
                         <div class="action-title">Başarımlar</div>
@@ -129,7 +131,7 @@
                     <span class="action-arrow">→</span>
                 </button>
                 
-                <button class="action-btn" id="statsBtn" data-panel="statsPanel">
+                <button class="action-btn" id="statsBtn" data-modal="statsModal">
                     <span class="action-icon">📊</span>
                     <div class="action-info">
                         <div class="action-title">İstatistikler</div>
@@ -138,7 +140,7 @@
                     <span class="action-arrow">→</span>
                 </button>
 
-                <button class="action-btn" id="uploadBtn" data-panel="uploadPanel">
+                <button class="action-btn" id="uploadBtn" data-modal="uploadModal">
                     <span class="action-icon">📤</span>
                     <div class="action-info">
                         <div class="action-title">STL Yükle</div>
@@ -147,7 +149,7 @@
                     <span class="action-arrow">→</span>
                 </button>
 
-                <button class="action-btn" id="galleryBtn" data-panel="galleryPanel">
+                <button class="action-btn" id="galleryBtn" data-modal="galleryModal">
                     <span class="action-icon">🖼️</span>
                     <div class="action-info">
                         <div class="action-title">Figür Galerim</div>
@@ -176,322 +178,156 @@
             </div>
         </section>
 
-        <section class="expandable-panel" id="achievementsPanel">
-            <div class="panel-header">
-                <h2>🏆 Başarımlar</h2>
-                <button class="panel-close" id="achievementsClose">×</button>
-            </div>
-            <div class="panel-content">
-                <div class="achievements-summary">
-                    <div class="summary-stat">
-                        <span class="stat-number" id="unlockedCount">0</span>
-                        <span class="stat-label">Açılan</span>
-                    </div>
-                    <div class="summary-stat">
-                        <span class="stat-number" id="totalPoints">0</span>
-                        <span class="stat-label">Puan</span>
-                    </div>
-                    <div class="summary-stat">
-                        <span class="stat-number">35</span>
-                        <span class="stat-label">Toplam</span>
-                    </div>
+        <!-- Achievements Modal -->
+        <div class="modal-overlay" id="achievementsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🏆 Başarımlar</h2>
+                    <button class="modal-close">×</button>
                 </div>
-                <div class="achievements-grid" id="achievementsGrid">
-                </div>
-            </div>
-        </section>
-
-        <section class="expandable-panel" id="statsPanel">
-            <div class="panel-header">
-                <h2>📊 İstatistikler</h2>
-                <button class="panel-close" id="statsClose">×</button>
-            </div>
-            <div class="panel-content">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">📅</div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="dailyModelsStats">0</div>
-                            <div class="stat-label">Bugünkü Model</div>
+                <div class="modal-body">
+                    <div class="achievements-summary">
+                        <div class="summary-stat">
+                            <span class="stat-number" id="unlockedCount">0</span>
+                            <span class="stat-label">Açılan</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-number" id="totalPoints">0</span>
+                            <span class="stat-label">Puan</span>
+                        </div>
+                        <div class="summary-stat">
+                            <span class="stat-number">35</span>
+                            <span class="stat-label">Toplam</span>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">🏆</div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="totalModelsStats">0</div>
-                            <div class="stat-label">Toplam Model</div>
+                    <div class="achievements-grid" id="achievementsGrid">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Modal -->
+        <div class="modal-overlay" id="statsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">📊 İstatistikler</h2>
+                    <button class="modal-close">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📅</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="dailyModelsStats">0</div>
+                                <div class="stat-label">Bugünkü Model</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-info">
+                                <div class="stat-value" id="totalModelsStats">0</div>
+                                <div class="stat-label">Toplam Model</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="expandable-panel" id="infoPanel">
-            <div class="panel-header">
-                <h2>ℹ️ Bilgi & Yardım</h2>
-                <button class="panel-close" id="infoClose">×</button>
-            </div>
-            <div class="panel-content">
-                <div class="info-sections">
-                    <div class="info-section">
-                        <h3>🎯 Nasıl Çalışır?</h3>
-                        <ul>
-                            <li>Her gün bir kere ücretsiz 3D model oluşturabilirsiniz</li>
-                            <li>Model otomatik olarak STL formatında indirilir</li>
-                            <li>24 saat sonra yeni hakkınız gelir</li>
-                            <li>Başarımlar kazanarak ilerleme kaydedin</li>
-                        </ul>
-                    </div>
+        <!-- Info Modal -->
+        <div class="modal-overlay" id="infoModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">ℹ️ Bilgi & Yardım</h2>
+                    <button class="modal-close" data-modal="infoModal">×</button>
+                </div>
+                <div class="modal-body">
+                    <h3>🎯 Nasıl Çalışır?</h3>
+                    <ul>
+                        <li>Her gün bir kere ücretsiz 3D model oluşturabilirsiniz</li>
+                        <li>Model otomatik olarak STL formatında indirilir</li>
+                        <li>24 saat sonra yeni hakkınız gelir</li>
+                        <li>Başarımlar kazanarak ilerleme kaydedin</li>
+                    </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="expandable-panel" id="loginPanel">
-            <div class="panel-header">
-                <h2>🔐 Daha Fazla Model</h2>
-                <button class="panel-close" id="loginClose">×</button>
-            </div>
-            <div class="panel-content">
-                <div class="login-sections">
-                    <div class="login-main">
-                        <div class="login-icon">⏰</div>
-                        <h3>Günlük Limitiniz Doldu</h3>
-                        <p>24 saatte bir ücretsiz model hakkınız bulunmaktadır.</p>
+
+        <!-- Upload Modal -->
+        <div class="modal-overlay" id="uploadModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">📤 STL Figür Yükle</h2>
+                    <button class="modal-close">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="upload-container">
+                        <div class="upload-limits">
+                            <div class="limit-info">
+                                <span class="limit-text">Günlük limit: </span>
+                                <span class="limit-counter" id="dailyUploadCounter">0/10</span>
+                            </div>
+                            <div class="limit-reset" id="limitResetTime">Sıfırlanma: 00:00:00</div>
+                        </div>
+
+                        <div class="upload-dropzone" id="stlDropzone">
+                            <div class="dropzone-content">
+                                <div class="dropzone-icon">📁</div>
+                                <div class="dropzone-title">STL Dosyasını Sürükle & Bırak</div>
+                                <div class="dropzone-subtitle">veya dosya seçmek için tıklayın</div>
+                                <div class="dropzone-formats">Sadece .stl formatı kabul edilir</div>
+                                <div class="dropzone-size">Maksimum dosya boyutu: 50MB</div>
+                            </div>
+                            <input type="file" id="stlFileInput" accept=".stl" style="display: none;">
+                        </div>
                         
-                        <div class="premium-features">
-                            <h4>🌟 Premium ile Daha Fazlası:</h4>
+                        <div class="upload-tips">
+                            <h4>💡 Yükleme İpuçları:</h4>
                             <ul>
-                                <li>✨ Sınırsız model oluşturma</li>
-                                <li>🎨 Özel model türleri</li>
-                                <li>📁 Gelişmiş dosya formatları</li>
-                                <li>⚡ Öncelikli işleme</li>
+                                <li>Sadece .stl formatındaki dosyalar kabul edilir</li>
+                                <li>Maksimum dosya boyutu 50MB'dir</li>
+                                <li>Günde en fazla 10 figür yükleyebilirsiniz</li>
                             </ul>
                         </div>
-
-                        <div class="login-actions">
-                            <button class="btn-primary" id="loginBtn">
-                                <span>🔑 Giriş Yap</span>
-                            </button>
-                            <button class="btn-secondary" id="registerBtn">
-                                <span>📝 Kayıt Ol</span>
-                            </button>
-                        </div>
-
-                        <div class="countdown-info">
-                            <span>🕒 Sonraki ücretsiz model:</span>
-                            <span id="loginCountdown" class="countdown-timer">23:45:12</span>
-                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- STL Upload Panel -->
-        <section class="expandable-panel" id="uploadPanel">
-            <div class="panel-header">
-                <h2>📤 STL Figür Yükle</h2>
-                <button class="panel-close" id="uploadPanelClose">×</button>
-            </div>
-            <div class="panel-content">
-                <div class="upload-container">
-                    <div class="upload-limits">
-                        <div class="limit-info">
-                            <span class="limit-text">Günlük limit: </span>
-                            <span class="limit-counter" id="dailyUploadCounter">0/10</span>
-                        </div>
-                        <div class="limit-reset" id="limitResetTime">Sıfırlanma: 00:00:00</div>
-                    </div>
-
-                    <div class="upload-dropzone" id="stlDropzone">
-                        <div class="dropzone-content">
-                            <div class="dropzone-icon">📁</div>
-                            <div class="dropzone-title">STL Dosyasını Sürükle & Bırak</div>
-                            <div class="dropzone-subtitle">veya dosya seçmek için tıklayın</div>
-                            <div class="dropzone-formats">Sadece .stl formatı kabul edilir</div>
-                            <div class="dropzone-size">Maksimum dosya boyutu: 50MB</div>
-                        </div>
-                        <input type="file" id="stlFileInput" accept=".stl" style="display: none;">
-                    </div>
-
-                    <div class="upload-progress" id="uploadProgress" style="display: none;">
-                        <div class="progress-info">
-                            <span class="progress-filename" id="uploadingFileName">dosya.stl</span>
-                            <span class="progress-percentage" id="uploadPercentage">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="uploadProgressBar"></div>
-                        </div>
-                        <div class="progress-size" id="uploadSizeInfo">0 / 0 MB</div>
-                    </div>
-
-                    <div class="upload-preview" id="uploadPreview" style="display: none;">
-                        <h3>📋 Dosya Bilgileri</h3>
-                        <div class="preview-info">
-                            <div class="info-row">
-                                <span class="info-label">Dosya Adı:</span>
-                                <span class="info-value" id="previewFileName">-</span>
+        <!-- Gallery Modal -->
+        <div class="modal-overlay" id="galleryModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🖼️ Figür Galerim</h2>
+                    <button class="modal-close">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="gallery-container">
+                        <div class="gallery-stats">
+                            <div class="stat-item">
+                                <span class="stat-value" id="totalUploadedCount">0</span>
+                                <span class="stat-label">Toplam Figür</span>
                             </div>
-                            <div class="info-row">
-                                <span class="info-label">Dosya Boyutu:</span>
-                                <span class="info-value" id="previewFileSize">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">Yükleme Tarihi:</span>
-                                <span class="info-value" id="previewUploadDate">-</span>
-                            </div>
-                            <div class="info-row">
-                                <span class="info-label">Format:</span>
-                                <span class="info-value">STL</span>
+                            <div class="stat-item">
+                                <span class="stat-value" id="todayUploadedCount">0</span>
+                                <span class="stat-label">Bugün Yüklenen</span>
                             </div>
                         </div>
-                        <div class="preview-actions">
-                            <button class="btn btn-success" id="confirmUpload">✅ Yüklemeyi Onayla</button>
-                            <button class="btn btn-cancel" id="cancelUpload">❌ İptal Et</button>
-                        </div>
-                    </div>
 
-                    <div class="upload-tips">
-                        <h4>💡 Yükleme İpuçları:</h4>
-                        <ul>
-                            <li>Sadece .stl formatındaki dosyalar kabul edilir</li>
-                            <li>Maksimum dosya boyutu 50MB'dir</li>
-                            <li>Günde en fazla 10 figür yükleyebilirsiniz</li>
-                            <li>Yüklediğiniz figürler galerinizde saklanır</li>
-                            <li>Başarılı yüklemeler için başarım kazanırsınız</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Panel -->
-        <section class="expandable-panel" id="galleryPanel">
-            <div class="panel-header">
-                <h2>🖼️ Figür Galerim</h2>
-                <button class="panel-close" id="galleryPanelClose">×</button>
-            </div>
-            <div class="panel-content">
-                <div class="gallery-container">
-                    <div class="gallery-stats">
-                        <div class="stat-item">
-                            <span class="stat-value" id="totalUploadedCount">0</span>
-                            <span class="stat-label">Toplam Figür</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-value" id="todayUploadedCount">0</span>
-                            <span class="stat-label">Bugün Yüklenen</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-value" id="totalUploadSize">0 MB</span>
-                            <span class="stat-label">Toplam Boyut</span>
-                        </div>
-                    </div>
-
-                    <div class="gallery-filters">
-                        <button class="filter-btn active" data-filter="all">🌟 Tümü</button>
-                        <button class="filter-btn" data-filter="today">📅 Bugün</button>
-                        <button class="filter-btn" data-filter="week">📆 Bu Hafta</button>
-                        <button class="filter-btn" data-filter="large">📏 Büyük Dosyalar</button>
-                    </div>
-
-                    <div class="gallery-grid" id="galleryGrid">
-                        <div class="empty-gallery">
-                            <div class="empty-icon">📁</div>
-                            <div class="empty-title">Henüz figür yüklenmemiş</div>
-                            <div class="empty-subtitle">İlk STL dosyanızı yükleyerek başlayın!</div>
-                            <button class="btn btn-primary" onclick="document.querySelector('#uploadBtn').click()">
-                                📤 İlk Figürü Yükle
-                            </button>
+                        <div class="gallery-grid" id="galleryGrid">
+                            <div class="empty-gallery">
+                                <div class="empty-icon">📁</div>
+                                <div class="empty-title">Henüz figür yüklenmemiş</div>
+                                <div class="empty-subtitle">İlk STL dosyanızı yükleyerek başlayın!</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="expandable-panel" id="loginFormPanel">
-            <div class="panel-header">
-                <h2>🔑 Giriş Yap</h2>
-                <button class="panel-close" id="loginFormClose">×</button>
-            </div>
-            <div class="panel-content">
-                <div class="auth-form-container">
-                    <form class="auth-form" id="loginForm">
-                        <div class="form-group">
-                            <label for="loginEmail">📧 E-posta</label>
-                            <input type="email" id="loginEmail" name="email" required placeholder="ornek@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="loginPassword">🔒 Şifre</label>
-                            <input type="password" id="loginPassword" name="password" required placeholder="Şifrenizi girin">
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn-primary auth-btn">
-                                <span>🔓 Giriş Yap</span>
-                            </button>
-                            <button type="button" class="btn-link" id="forgotPasswordBtn">
-                                <span>Şifremi Unuttum</span>
-                            </button>
-                        </div>
-                        <div class="form-footer">
-                            <span>Hesabınız yok mu?</span>
-                            <button type="button" class="btn-link" id="switchToRegister">
-                                <span>Kayıt Ol</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
 
-        <section class="expandable-panel" id="registerFormPanel">
-            <div class="panel-header">
-                <h2>📝 Kayıt Ol</h2>
-                <button class="panel-close" id="registerFormClose">×</button>
-            </div>
-            <div class="panel-content">
-                <div class="auth-form-container">
-                    <form class="auth-form" id="registerForm">
-                        <div class="form-group">
-                            <label for="registerName">👤 Ad Soyad</label>
-                            <input type="text" id="registerName" name="name" required placeholder="Adınızı ve soyadınızı girin">
-                        </div>
-                        <div class="form-group">
-                            <label for="registerEmail">📧 E-posta</label>
-                            <input type="email" id="registerEmail" name="email" required placeholder="ornek@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="registerPassword">🔒 Şifre</label>
-                            <input type="password" id="registerPassword" name="password" required placeholder="En az 8 karakter">
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">🔐 Şifre Tekrar</label>
-                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Şifrenizi tekrar girin">
-                        </div>
-                        <div class="form-group checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
-                                <span class="checkmark"></span>
-                                <span class="checkbox-text">
-                                    <a href="#" class="terms-link">Kullanım Şartları</a> ve 
-                                    <a href="#" class="privacy-link">Gizlilik Politikası</a>'nı kabul ediyorum
-                                </span>
-                            </label>
-                        </div>
-                        <div class="form-actions">
-                            <button type="submit" class="btn-primary auth-btn">
-                                <span>✨ Kayıt Ol</span>
-                            </button>
-                        </div>
-                        <div class="form-footer">
-                            <span>Zaten hesabınız var mı?</span>
-                            <button type="button" class="btn-link" id="switchToLogin">
-                                <span>Giriş Yap</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
     </main>
 
     <div class="loading-overlay" id="loadingOverlay">
@@ -504,8 +340,229 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo" id="footerLogo" style="cursor: pointer;">
+                        <span class="footer-logo-icon">🎲</span>
+                        <span class="footer-logo-text">3D Flick</span>
+                    </div>
+                    <p class="footer-description">
+                        Günlük ücretsiz 3D model oluşturun ve indirin. 
+                        Her gün yeni bir sürpriz sizi bekliyor!
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4 class="footer-title">İletişim</h4>
+                        <ul class="footer-list">
+                            <li><a href="#" class="footer-link">💬 İletişim</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4 class="footer-title">Yasal</h4>
+                        <ul class="footer-list">
+                            <li><a href="#" class="footer-link">📋 Kullanım Şartları</a></li>
+                            <li><a href="#" class="footer-link">🔒 Gizlilik Politikası</a></li>
+                            <li><a href="#" class="footer-link">⚖️ KVKK</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p class="footer-copyright">
+                        © 2025 3D Flick. Tüm hakları saklıdır.
+                    </p>
+                    <p class="footer-made-by">
+                        <strong>ogubenn.com.tr</strong>
+                    </p>
+                </div>
+                <div class="footer-bottom-right">
+                    <div class="footer-social">
+                        <a href="https://ogubenn.com.tr" target="_blank" class="social-link website" title="Website">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link linkedin" title="LinkedIn">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link github" title="GitHub">
+                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script src="./js/achievements-new.js?v=2.0"></script>
-    <script src="./js/audio.js?v=2.0"></script>
     <script src="./js/app.js?v=2.0"></script>
+    
+    <script>
+        // Yeni Modal Sistemi - Tamamen Yeniden Yazılmış
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Yeni modal sistemi yükleniyor...');
+            
+            // Modal açma fonksiyonu
+            function openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal && modal.classList.contains('modal-overlay')) {
+                    // Önce tüm modalleri kapat
+                    closeAllModals();
+                    
+                    // Seçilen modalı aç
+                    modal.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    console.log('Modal açıldı:', modalId);
+                }
+            }
+            
+            // Modal kapatma fonksiyonu
+            function closeModal(modalId) {
+                const modal = modalId ? document.getElementById(modalId) : document.querySelector('.modal-overlay.show');
+                if (modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = '';
+                    console.log('Modal kapatıldı:', modal.id);
+                }
+            }
+            
+            // Tüm modalleri kapat
+            function closeAllModals() {
+                document.querySelectorAll('.modal-overlay.show').forEach(modal => {
+                    modal.classList.remove('show');
+                });
+                document.body.style.overflow = '';
+            }
+            
+            // Event delegation ile modal işlemlerini dinle
+            document.addEventListener('click', function(e) {
+                // ÖNCELİK 1: Modal kapatma butonları (.modal-close)
+                if (e.target.closest('.modal-close')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('✕ X butonu tıklandı!', e.target);
+                    const modal = e.target.closest('.modal-overlay');
+                    console.log('Modal bulundu:', modal);
+                    if (modal) {
+                        console.log('Modal kapatılıyor:', modal.id);
+                        closeModal(modal.id);
+                    }
+                    return;
+                }
+                
+                // ÖNCELİK 2: Modal açma butonları
+                const target = e.target.closest('[data-modal]');
+                if (target) {
+                    e.preventDefault();
+                    const modalId = target.getAttribute('data-modal');
+                    console.log('📂 Modal açma isteği:', modalId, 'Buton:', target);
+                    openModal(modalId);
+                    return;
+                }
+                
+                // Overlay'e (modal dışına) tıklama ile kapatma
+                if (e.target.classList.contains('modal-overlay')) {
+                    closeModal(e.target.id);
+                    return;
+                }
+            });
+            
+            // ESC tuşu ile modal kapatma
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    const activeModal = document.querySelector('.modal-overlay.show');
+                    if (activeModal) {
+                        closeModal(activeModal.id);
+                    }
+                }
+            });
+            
+            // Footer model oluştur butonu
+            document.getElementById('footerGenerateBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                const mainGenerateBtn = document.getElementById('generateBtn');
+                if (mainGenerateBtn) {
+                    mainGenerateBtn.click();
+                }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Tema değiştirme sistemi
+            function toggleTheme() {
+                const html = document.documentElement;
+                const currentTheme = html.getAttribute('data-theme') || 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                const themeToggle = document.getElementById('themeToggle');
+                if (themeToggle) {
+                    themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+                }
+                
+                console.log('Tema değiştirildi:', newTheme);
+            }
+            
+            document.getElementById('themeToggle')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleTheme();
+            });
+            
+            // Logo tıklamalarında sayfayı yenile
+            document.getElementById('footerLogo')?.addEventListener('click', function() {
+                window.location.reload();
+            });
+            
+            document.getElementById('navLogo')?.addEventListener('click', function() {
+                window.location.reload();
+            });
+            
+            // Sayfa yüklendiğinde tema ayarını uygula
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            }
+            
+            console.log('🎉 Modal sistemi hazır! Modaller:', document.querySelectorAll('.modal-overlay').length);
+            console.log('X butonları bulundu:', document.querySelectorAll('.modal-close').length);
+            
+            // İlk test - bir modal açmayı dene
+            setTimeout(() => {
+                console.log('Test: Upload modalını açmayı deniyorum...');
+                const uploadBtn = document.getElementById('uploadBtn');
+                console.log('Upload butonu:', uploadBtn);
+                if (uploadBtn) {
+                    console.log('Upload buton data-modal:', uploadBtn.getAttribute('data-modal'));
+                }
+            }, 1000);
+            
+            // Test için modal listesi
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                console.log('Modal bulundu:', modal.id);
+            });
+            
+            // Test için buton listesi
+            document.querySelectorAll('[data-modal]').forEach(btn => {
+                console.log('Modal butonu bulundu:', btn.id, 'data-modal:', btn.getAttribute('data-modal'));
+            });
+        });
+    </script>
 </body>
 </html>

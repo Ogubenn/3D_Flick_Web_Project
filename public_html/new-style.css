@@ -19,6 +19,10 @@ CSS RESET & BASE
 
 html {
     scroll-behavior: smooth;
+    /* Performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 *::before,
@@ -121,6 +125,9 @@ body {
     transition: background-color var(--transition-normal), color var(--transition-normal);
     min-height: 100vh;
     overflow-x: hidden;
+    /* Performance optimizations */
+    will-change: scroll-position;
+    contain: layout style paint;
 }
 
 /*
@@ -158,6 +165,12 @@ NAVIGATION BAR
     font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.logo:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
 }
 
 .logo-icon {
@@ -616,50 +629,97 @@ QUICK ACTIONS SECTION
 
 /*
 -----------------------------------------
-EXPANDABLE PANELS
+MODERN MODAL SYSTEM - SIFIRDAN YENİ
 -----------------------------------------
 */
-.expandable-panel {
+.modal-overlay {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal-content {
     background: var(--bg-card);
-    border-radius: var(--radius-xl);
-    margin-bottom: var(--space-lg);
-    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 600px;
+    max-height: 85vh;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
     border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-lg);
-    animation: slideIn 0.3s ease-out;
 }
 
-.expandable-panel.active {
-    display: block;
-    animation: slideDown 0.4s ease-out;
+.modal-overlay.show .modal-content {
+    transform: scale(1) translateY(0);
 }
 
-.panel-header {
+.modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-lg);
-    border-bottom: 1px solid var(--border-color);
+    padding: 24px 24px 0 24px;
+    margin-bottom: 16px;
 }
 
-.panel-header h2 {
-    font-size: var(--font-size-2xl);
+.modal-title {
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
+    margin: 0;
 }
 
-.panel-close {
+.modal-close {
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
     width: 40px;
     height: 40px;
-    background: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: var(--font-size-lg);
-    transition: all var(--transition-fast);
+    color: var(--text-secondary);
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
 }
+
+.modal-close:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: white;
+    transform: rotate(90deg) scale(1.05);
+}
+
+.modal-body {
+    padding: 0 24px 24px;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+
+
+
+
+
 
 .panel-close:hover {
     background: var(--error-color);
@@ -2448,4 +2508,366 @@ FINAL ANIMATIONS & POLISH
 
 [data-theme="dark"] .upload-dropzone:hover {
     background: rgba(102, 126, 234, 0.1);
+}
+
+/*
+=========================================
+FOOTER STYLES
+=========================================
+*/
+
+.site-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    margin-top: var(--space-sm);
+    padding: var(--space-sm) 0 var(--space-xs);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0.02;
+    pointer-events: none;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+.footer-brand {
+    max-width: 280px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: 6px;
+    transition: var(--transition-fast);
+}
+
+.footer-logo:hover {
+    transform: translateY(-1px);
+}
+
+.footer-logo-icon {
+    font-size: var(--font-size-2xl);
+    background: var(--gradient-primary);
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 8px rgba(102, 126, 234, 0.3));
+}
+
+.footer-logo-text {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-description {
+    color: var(--text-secondary);
+    line-height: 1.4;
+    font-size: var(--font-size-sm);
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+}
+
+
+
+.footer-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 2px;
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: 2px 0;
+}
+
+.footer-link:hover {
+    color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.footer-bottom-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.footer-copyright {
+    color: var(--text-muted);
+    font-size: var(--font-size-xs);
+}
+
+.footer-made-by {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.footer-made-by strong {
+    color: var(--primary-color);
+    font-weight: 600;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer-bottom-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-social {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.social-link svg {
+    fill: currentColor;
+    transition: var(--transition-fast);
+}
+
+.social-link:hover {
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Website özel renkleri */
+.social-link.website:hover {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+/* LinkedIn özel renkleri */
+.social-link.linkedin:hover {
+    background: #0077b5;
+    color: white;
+}
+
+/* GitHub özel renkleri */
+.social-link.github:hover {
+    background: #333;
+    color: white;
+}
+
+/* Dark tema için özel ayarlar */
+[data-theme="dark"] .social-link.github:hover {
+    background: #f6f8fa;
+    color: #24292e;
+}
+
+/* Modal Animasyonları */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal Responsive Tasarım */
+@media (max-width: 768px) {
+    .expandable-panel {
+        padding: 10px;
+    }
+    
+    .panel-container {
+        max-width: 100%;
+        margin: 0;
+        border-radius: var(--radius-lg);
+    }
+    
+    .panel-header {
+        padding: var(--space-md);
+    }
+    
+    .panel-header h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .panel-close {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .expandable-panel {
+        padding: 5px;
+    }
+    
+    .panel-container {
+        max-height: 95vh;
+    }
+    
+    .panel-header {
+        padding: var(--space-sm);
+    }
+    
+    .panel-header h2 {
+        font-size: var(--font-size-lg);
+    }
+    
+    .panel-close {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xs);
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer {
+        padding: var(--space-xs) 0;
+        margin-top: var(--space-xs);
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-xs);
+    }
+    
+    .footer-bottom-left {
+        align-items: center;
+        order: 2;
+    }
+    
+    .footer-bottom-right {
+        order: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        padding: 0 var(--space-xs);
+    }
+    
+    .footer-brand {
+        max-width: 100%;
+    }
+    
+    .footer-logo-text {
+        font-size: var(--font-size-base);
+    }
+    
+    .footer-social {
+        gap: var(--space-xs);
+    }
+    
+    .social-link {
+        width: 32px;
+        height: 32px;
+        font-size: var(--font-size-sm);
+    }
 }
