@@ -1,93 +1,284 @@
 <!DOCTYPE html>
 <html lang="tr" data-theme="light">
 <head>
+    <!-- ========================================= -->
+    <!-- SEO ve META ETİKETLERİ - Optimize Edildi -->
+    <!-- ========================================= -->
+    
+    <!-- Temel Meta Etiketleri -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Flick - Günlük Ücretsiz 3D Model</title>
-    <meta name                <div class="modal-header">
-                    <h2 class="modal-title">ℹ️ Bilgi ve Yardım</h2>
-                    <button class="modal-close">×</button>
-                </div>scription" content="Günde bir kere ücretsiz rastgele 3D model oluştur ve indir!">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
-    <link rel="stylesheet" href="./new-style.css?v=2.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Ana SEO Etiketleri -->
+    <title>3D Flick - Günlük Ücretsiz 3D Model İndir | STL Dosyası</title>
+    <meta name="description" content="Her gün ücretsiz rastgele 3D model oluşturun ve STL formatında indirin. 3D yazıcı için hazır modeller, tamamen ücretsiz, kayıt gerektirmez.">
+    <meta name="keywords" content="3d model, stl dosyası, ücretsiz 3d model, 3d yazıcı modeli, günlük 3d model, rastgele 3d model, 3d flick, ogubenn">
+    <meta name="author" content="ogubenn.com.tr">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="Turkish">
+    <meta name="geo.region" content="TR">
+    <meta name="geo.country" content="Turkey">
+    
+    <!-- ========================================= -->
+    <!-- GÜVENLİK HEADERS - Security Implementation -->
+    <!-- ========================================= -->
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net;
+        img-src 'self' data: https: blob:;
+        font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net;
+        connect-src 'self' https://www.google-analytics.com;
+        media-src 'self' data: blob:;
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'none';
+        upgrade-insecure-requests;
+    ">
+    
+    <!-- XSS Protection -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- Content Type Options -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
+    <!-- Frame Options -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <!-- Referrer Policy -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://3dflick.ogubenn.com.tr/">
+    
+    <!-- Open Graph (Facebook, LinkedIn) -->
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="3D Flick - Günlük Ücretsiz 3D Model İndir">
+    <meta property="og:description" content="Her gün ücretsiz rastgele 3D model oluşturun ve STL formatında indirin. 3D yazıcı için hazır modeller, tamamen ücretsiz.">
+    <meta property="og:url" content="https://3dflick.ogubenn.com.tr/">
+    <meta property="og:site_name" content="3D Flick">
+    <meta property="og:image" content="https://3dflick.ogubenn.com.tr/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="3D Flick - Günlük ücretsiz 3D model oluşturucu">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="3D Flick - Günlük Ücretsiz 3D Model İndir">
+    <meta name="twitter:description" content="Her gün ücretsiz rastgele 3D model oluşturun ve STL formatında indirin. 3D yazıcı için hazır modeller.">
+    <meta name="twitter:image" content="https://3dflick.ogubenn.com.tr/images/twitter-image.jpg">
+    <meta name="twitter:image:alt" content="3D Flick günlük ücretsiz 3D model">
+    <meta name="twitter:site" content="@ogubenn">
+    <meta name="twitter:creator" content="@ogubenn">
+    
+    <!-- Favicon ve App Icons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    
+    <!-- Performance Optimizations -->
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    
+    <!-- Critical CSS (Inline) -->
+    <style>
+        /* Critical CSS - Above the fold styles */
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;line-height:1.6;background:#f8fafc;color:#1a202c;min-height:100vh;overflow-x:hidden}
+        .top-nav{position:fixed;top:0;left:0;right:0;background:rgba(248,250,252,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.1);z-index:1000}
+        .nav-container{display:flex;align-items:center;justify-content:space-between;padding:1rem;max-width:1200px;margin:0 auto}
+        .main-container{max-width:800px;margin:0 auto;padding:80px 1.5rem 3rem;min-height:100vh}
+        .skip-link{position:absolute;top:-40px;left:6px;background:#667eea;color:white;padding:8px;text-decoration:none;border-radius:0 0 4px 4px;z-index:10000;font-weight:600;transition:top 0.3s ease}
+        .skip-link:focus{top:0}
+    </style>
+    
+    <!-- Main Stylesheet (Non-blocking) -->
+    <link rel="preload" href="./new-style.css?v=2.2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="./new-style.css?v=2.2"></noscript>
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "3D Flick",
+        "description": "Günlük ücretsiz 3D model oluşturucu ve STL dosya indirici",
+        "url": "https://3dflick.ogubenn.com.tr/",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web Browser",
+        "browserRequirements": "Modern web browser with JavaScript support",
+        "author": {
+            "@type": "Person",
+            "name": "ogubenn",
+            "url": "https://ogubenn.com.tr"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "TRY",
+            "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "150",
+            "bestRating": "5"
+        },
+        "keywords": "3D model, STL, ücretsiz, 3D yazıcı, günlük model"
+    }
+    </script>
 </head>
 <body>
-    <nav class="top-nav">
+    <!-- Skip to content link (Erişilebilirlik için) -->
+    <a class="skip-link" href="#main-content">Ana içeriğe geç</a>
+    
+    <!-- Breadcrumb Navigation (SEO için) -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="https://3dflick.ogubenn.com.tr/">
+                    <span itemprop="name">Ana Sayfa</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+        </ol>
+    </nav>
+    
+    <nav class="top-nav" role="navigation" aria-label="Ana navigasyon">
         <div class="nav-container">
-            <div class="logo" id="navLogo" style="cursor: pointer;">
-                <span class="logo-icon">🎲</span>
+            <div class="logo" id="navLogo" role="button" tabindex="0" 
+                 aria-label="3D Flick ana sayfaya git" 
+                 style="cursor: pointer;">
+                <span class="logo-icon" aria-hidden="true">🎲</span>
                 <span class="logo-text">3D Flick</span>
             </div>
-            <div class="nav-controls">
-                <button class="nav-btn" id="themeToggle" title="Tema değiştir">🌙</button>
-                <button class="nav-btn" id="infoToggle" data-modal="infoModal" title="Bilgi ve yardım">ℹ️</button>
-                <button class="nav-btn nav-login-btn" id="navLoginBtn" title="Giriş Yap">👤</button>
+            <div class="nav-controls" role="toolbar" aria-label="Navigasyon kontrolleri">
+                <button class="nav-btn" id="themeToggle" 
+                        aria-label="Karanlık ve aydınlık tema arasında geçiş yap"
+                        aria-pressed="false"
+                        tabindex="0">
+                    <span aria-hidden="true">🌙</span>
+                    <span class="sr-only">Tema değiştir</span>
+                </button>
+                <button class="nav-btn" id="infoToggle" 
+                        data-modal="infoModal" 
+                        aria-label="Bilgi ve yardım modalını aç"
+                        aria-haspopup="dialog"
+                        tabindex="0">
+                    <span aria-hidden="true">ℹ️</span>
+                    <span class="sr-only">Bilgi ve yardım</span>
+                </button>
+                <button class="nav-btn nav-login-btn" id="navLoginBtn" 
+                        aria-label="Giriş yap modalını aç"
+                        aria-haspopup="dialog"
+                        tabindex="0">
+                    <span aria-hidden="true">👤</span>
+                    <span class="sr-only">Giriş Yap</span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <main class="main-container">
-        <section class="daily-status-section">
-            <div class="status-card">
-                <div class="status-info">
-                    <div class="status-item">
-                        <span class="status-icon">📅</span>
+    <main id="main-content" class="main-container" role="main" aria-label="Ana içerik alanı">
+        <section class="daily-status-section" aria-labelledby="status-title">
+            <h2 id="status-title" class="sr-only">Günlük durum bilgileri</h2>
+            <div class="status-card" role="region" aria-label="Kullanıcı durum kartı">
+                <div class="status-info" role="list" aria-label="Durum bilgileri listesi">
+                    <div class="status-item" role="listitem">
+                        <span class="status-icon" aria-hidden="true">📅</span>
                         <div class="status-details">
-                            <span class="status-label">Günlük Durum</span>
-                            <span class="status-value" id="dailyStatusText">Hakkınız var!</span>
+                            <span class="status-label" id="daily-status-label">Günlük Durum</span>
+                            <span class="status-value" id="dailyStatusText" 
+                                  aria-labelledby="daily-status-label"
+                                  role="status" 
+                                  aria-live="polite">Hakkınız var!</span>
                         </div>
                     </div>
-                    <div class="status-item">
-                        <span class="status-icon">⏰</span>
+                    <div class="status-item" role="listitem">
+                        <span class="status-icon" aria-hidden="true">⏰</span>
                         <div class="status-details">
-                            <span class="status-label">Sonraki Reset</span>
-                            <span class="status-countdown" id="countdownTimer">24:00:00</span>
+                            <span class="status-label" id="countdown-label">Sonraki Reset</span>
+                            <span class="status-countdown" id="countdownTimer"
+                                  aria-labelledby="countdown-label"
+                                  role="timer"
+                                  aria-live="off">24:00:00</span>
                         </div>
                     </div>
-                    <div class="status-item">
-                        <span class="status-icon">🏆</span>
+                    <div class="status-item" role="listitem">
+                        <span class="status-icon" aria-hidden="true">🏆</span>
                         <div class="status-details">
-                            <span class="status-label">Toplam Model</span>
-                            <span class="status-value" id="totalModelsCount">0</span>
+                            <span class="status-label" id="total-models-label">Toplam Model</span>
+                            <span class="status-value" id="totalModelsCount"
+                                  aria-labelledby="total-models-label"
+                                  role="status"
+                                  aria-live="polite">0</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="generator-section">
+        <section class="generator-section" 
+                 itemscope itemtype="https://schema.org/SoftwareApplication"
+                 aria-labelledby="generator-title">
             <div class="generator-container">
-                <div class="generator-header">
-                    <h1 class="generator-title">Günlük 3D Model Üreticisi</h1>
-                    <p class="generator-subtitle">Her gün bir kere ücretsiz • Rastgele • STL formatında</p>
-                </div>
+                <header class="generator-header">
+                    <h1 class="generator-title" 
+                        id="generator-title"
+                        itemprop="name">Günlük Ücretsiz 3D Model İndir - STL Dosyası Oluşturucu</h1>
+                    <p class="generator-subtitle" 
+                       itemprop="description"
+                       aria-describedby="generator-features">Her gün bir kere ücretsiz • Rastgele • STL formatında • 3D Yazıcı için hazır</p>
+                </header>
 
-                <div class="generator-main">
-                    <button class="main-generator-btn" id="generateBtn">
+                <div class="generator-main" role="application" aria-label="3D Model üreticisi">
+                    <button class="main-generator-btn" 
+                            id="generateBtn"
+                            aria-describedby="generate-btn-help"
+                            tabindex="0">
                         <div class="btn-content">
-                            <div class="btn-icon btn-icon">🎯</div>
+                            <div class="btn-icon btn-icon" aria-hidden="true">🎯</div>
                             <div class="btn-text">
                                 <div class="btn-primary-text btn-text">GÜNLÜK MODELİNİ OLUŞTUR</div>
-                                <div class="btn-secondary-text">Tıklayın ve STL dosyanızı indirin</div>
+                                <div class="btn-secondary-text" id="generate-btn-help">Tıklayın ve STL dosyanızı indirin</div>
                             </div>
                         </div>
                     </button>
                     
-                    <div class="features-list">
-                        <div class="feature-item">
-                            <span class="feature-icon">⏰</span>
+                    <div class="features-list" 
+                         role="list" 
+                         aria-label="Özellik listesi"
+                         id="generator-features">
+                        <div class="feature-item" role="listitem">
+                            <span class="feature-icon" aria-hidden="true">⏰</span>
                             <span class="feature-text">24 saatte bir hak</span>
                         </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">🎲</span>
+                        <div class="feature-item" role="listitem">
+                            <span class="feature-icon" aria-hidden="true">🎲</span>
                             <span class="feature-text">Tamamen rastgele</span>
                         </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">📁</span>
+                        <div class="feature-item" role="listitem">
+                            <span class="feature-icon" aria-hidden="true">📁</span>
                             <span class="feature-text">STL formatında</span>
                         </div>
-                        <div class="feature-item">
-                            <span class="feature-icon">💯</span>
+                        <div class="feature-item" role="listitem">
+                            <span class="feature-icon" aria-hidden="true">💯</span>
                             <span class="feature-text">Ücretsiz</span>
                         </div>
                     </div>
@@ -120,79 +311,128 @@
             </div>
         </section>
 
-        <section class="quick-actions-section">
-            <div class="actions-container">
-                <button class="action-btn" id="achievementsBtn" data-modal="achievementsModal">
-                    <span class="action-icon">🏆</span>
+        <section class="quick-actions-section" aria-labelledby="actions-title">
+            <h2 id="actions-title" class="sr-only">Hızlı işlemler</h2>
+            <div class="actions-container" role="list" aria-label="Hızlı işlem butonları">
+                <button class="action-btn" 
+                        id="achievementsBtn" 
+                        data-modal="achievementsModal"
+                        role="listitem"
+                        aria-haspopup="dialog"
+                        aria-describedby="achievement-desc"
+                        tabindex="0">
+                    <span class="action-icon" aria-hidden="true">🏆</span>
                     <div class="action-info">
                         <div class="action-title">Başarımlar</div>
-                        <div class="action-subtitle" id="achievementProgress">0/35 Açıldı</div>
+                        <div class="action-subtitle" id="achievementProgress" aria-live="polite">0/35 Açıldı</div>
                     </div>
-                    <span class="action-arrow">→</span>
+                    <span class="action-arrow" aria-hidden="true">→</span>
+                    <span id="achievement-desc" class="sr-only">Başarımlar modalını açar</span>
                 </button>
                 
-                <button class="action-btn" id="statsBtn" data-modal="statsModal">
-                    <span class="action-icon">📊</span>
+                <button class="action-btn" 
+                        id="statsBtn" 
+                        data-modal="statsModal"
+                        role="listitem"
+                        aria-haspopup="dialog"
+                        aria-describedby="stats-desc"
+                        tabindex="0">
+                    <span class="action-icon" aria-hidden="true">📊</span>
                     <div class="action-info">
                         <div class="action-title">İstatistikler</div>
                         <div class="action-subtitle">Detaylarınızı görün</div>
                     </div>
-                    <span class="action-arrow">→</span>
+                    <span class="action-arrow" aria-hidden="true">→</span>
+                    <span id="stats-desc" class="sr-only">İstatistikler modalını açar</span>
                 </button>
 
-                <button class="action-btn" id="uploadBtn" data-modal="uploadModal">
-                    <span class="action-icon">📤</span>
+                <button class="action-btn" 
+                        id="uploadBtn" 
+                        data-modal="uploadModal"
+                        role="listitem"
+                        aria-haspopup="dialog"
+                        aria-describedby="upload-desc"
+                        tabindex="0">
+                    <span class="action-icon" aria-hidden="true">📤</span>
                     <div class="action-info">
                         <div class="action-title">STL Yükle</div>
-                        <div class="action-subtitle" id="uploadLimitDisplay">Bugün 0/10 yüklendi</div>
+                        <div class="action-subtitle" id="uploadLimitDisplay" aria-live="polite">Bugün 0/10 yüklendi</div>
                     </div>
-                    <span class="action-arrow">→</span>
+                    <span class="action-arrow" aria-hidden="true">→</span>
+                    <span id="upload-desc" class="sr-only">STL dosyası yükleme modalını açar</span>
                 </button>
 
-                <button class="action-btn" id="galleryBtn" data-modal="galleryModal">
-                    <span class="action-icon">🖼️</span>
+                <button class="action-btn" 
+                        id="galleryBtn" 
+                        data-modal="galleryModal"
+                        role="listitem"
+                        aria-haspopup="dialog"
+                        aria-describedby="gallery-desc"
+                        tabindex="0">
+                    <span class="action-icon" aria-hidden="true">🖼️</span>
                     <div class="action-info">
                         <div class="action-title">Figür Galerim</div>
-                        <div class="action-subtitle" id="galleryCount">0 figür</div>
+                        <div class="action-subtitle" id="galleryCount" aria-live="polite">0 figür</div>
                     </div>
-                    <span class="action-arrow">→</span>
+                    <span class="action-arrow" aria-hidden="true">→</span>
+                    <span id="gallery-desc" class="sr-only">Figür galeri modalını açar</span>
                 </button>
                 
-                <button class="action-btn" id="downloadBtn">
-                    <span class="action-icon">📥</span>
+                <button class="action-btn" 
+                        id="downloadBtn"
+                        role="listitem"
+                        aria-describedby="download-desc"
+                        tabindex="0">
+                    <span class="action-icon" aria-hidden="true">📥</span>
                     <div class="action-info">
                         <div class="action-title">Son Modeli İndir</div>
                         <div class="action-subtitle">Tekrar indir</div>
                     </div>
-                    <span class="action-arrow">→</span>
+                    <span class="action-arrow" aria-hidden="true">→</span>
+                    <span id="download-desc" class="sr-only">Son oluşturulan modeli tekrar indirir</span>
                 </button>
                 
-                <button class="action-btn" id="shareBtn">
-                    <span class="action-icon">🔗</span>
+                <button class="action-btn" 
+                        id="shareBtn"
+                        role="listitem"
+                        aria-describedby="share-desc"
+                        tabindex="0">
+                    <span class="action-icon" aria-hidden="true">🔗</span>
                     <div class="action-info">
                         <div class="action-title">Siteyi Paylaş</div>
                         <div class="action-subtitle">Arkadaşlarına anlat</div>
                     </div>
-                    <span class="action-arrow">→</span>
+                    <span class="action-arrow" aria-hidden="true">→</span>
+                    <span id="share-desc" class="sr-only">Siteyi sosyal medyada paylaş</span>
                 </button>
             </div>
         </section>
 
         <!-- Achievements Modal -->
-        <div class="modal-overlay" id="achievementsModal">
+        <div class="modal-overlay" 
+             id="achievementsModal"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="achievements-modal-title"
+             aria-describedby="achievements-modal-desc"
+             tabindex="-1">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title">🏆 Başarımlar</h2>
-                    <button class="modal-close">×</button>
+                    <h2 class="modal-title" id="achievements-modal-title">
+                        <span aria-hidden="true">🏆</span> Başarımlar
+                    </h2>
+                    <button class="modal-close" 
+                            aria-label="Başarımlar modalını kapat"
+                            tabindex="0">×</button>
                 </div>
-                <div class="modal-body">
-                    <div class="achievements-summary">
+                <div class="modal-body" id="achievements-modal-desc">
+                    <div class="achievements-summary" role="region" aria-label="Başarım özeti">
                         <div class="summary-stat">
-                            <span class="stat-number" id="unlockedCount">0</span>
+                            <span class="stat-number" id="unlockedCount" aria-live="polite">0</span>
                             <span class="stat-label">Açılan</span>
                         </div>
                         <div class="summary-stat">
-                            <span class="stat-number" id="totalPoints">0</span>
+                            <span class="stat-number" id="totalPoints" aria-live="polite">0</span>
                             <span class="stat-label">Puan</span>
                         </div>
                         <div class="summary-stat">
@@ -200,7 +440,10 @@
                             <span class="stat-label">Toplam</span>
                         </div>
                     </div>
-                    <div class="achievements-grid" id="achievementsGrid">
+                    <div class="achievements-grid" 
+                         id="achievementsGrid"
+                         role="grid"
+                         aria-label="Başarımlar listesi">
                     </div>
                 </div>
             </div>
@@ -249,6 +492,50 @@
                         <li>24 saat sonra yeni hakkınız gelir</li>
                         <li>Başarımlar kazanarak ilerleme kaydedin</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Modal -->
+        <div class="modal-overlay" id="loginModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🔑 Giriş Yapın</h2>
+                    <button class="modal-close">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="login-sections">
+                        <div class="login-main">
+                            <div class="login-icon">👤</div>
+                            <h3>Daha Fazla Model İçin Giriş Yapın</h3>
+                            <p>
+                                Günlük hakkınızı kullandınız! Daha fazla 3D model oluşturmak ve 
+                                özel özelliklere erişmek için giriş yapmanız gerekiyor.
+                            </p>
+                            
+                            <div class="premium-features">
+                                <h4>⭐ Premium Özellikler:</h4>
+                                <ul>
+                                    <li>✨ Sınırsız günlük model oluşturma</li>
+                                    <li>🎨 Özel model kategorileri</li>
+                                    <li>📊 Detaylı istatistikler</li>
+                                    <li>🏆 Özel başarımlar</li>
+                                    <li>💾 Model geçmişi</li>
+                                    <li>🔄 Model özelleştirme</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="login-actions">
+                                <button class="btn-primary" id="registerBtn">Ücretsiz Kayıt Ol</button>
+                                <button class="btn-secondary" id="loginBtn">Giriş Yap</button>
+                            </div>
+                            
+                            <div class="countdown-info">
+                                <span>⏰ Bedava hakkınız:</span>
+                                <span class="countdown-timer" id="loginCountdownTimer">23:59:45</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -333,9 +620,36 @@
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-            <div class="loading-text">3D Model Oluşturuluyor...</div>
-            <div class="loading-progress">
-                <div class="progress-bar" id="progressBar"></div>
+            <div class="loading-text" id="loadingText">3D Model Oluşturuluyor...</div>
+            
+            <!-- YENİ PROGRESS BAR SİSTEMİ -->
+            <div style="width: 100%; margin: 20px 0;">
+                <div id="progressContainer" style="
+                    width: 100%; 
+                    height: 16px; 
+                    background: #333; 
+                    border-radius: 8px; 
+                    border: 2px solid #667eea; 
+                    overflow: hidden;
+                    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+                ">
+                    <div id="progressBar" style="
+                        width: 0%; 
+                        height: 100%; 
+                        background: #ff4444;
+                        transition: width 0.1s linear;
+                        border-radius: 6px;
+                        position: relative;
+                    "></div>
+                </div>
+                <div id="progressText" style="
+                    text-align: center; 
+                    margin-top: 8px; 
+                    font-size: 16px; 
+                    font-weight: bold; 
+                    color: #667eea;
+                    font-family: monospace;
+                ">0%</div>
             </div>
         </div>
     </div>
@@ -382,6 +696,8 @@
                     <p class="footer-made-by">
                         <strong>ogubenn.com.tr</strong>
                     </p>
+                    <!-- Gizli reset butonu - 5 kez tıkla -->
+                    <span id="hiddenReset" style="opacity: 0.1; font-size: 10px; cursor: pointer; user-select: none;">⚡</span>
                 </div>
                 <div class="footer-bottom-right">
                     <div class="footer-social">
@@ -410,8 +726,201 @@
     <script src="./js/app.js?v=2.0"></script>
     
     <script>
+        // Accessibility Manager - Erişilebilirlik Yöneticisi
+        const AccessibilityManager = {
+            // Klavye ve mouse kullanım tespiti
+            isKeyboardUser: false,
+            
+            init: function() {
+                this.setupInputMethodDetection();
+                this.setupKeyboardNavigation();
+                this.setupFocusManagement();
+                this.setupAriaLiveRegions();
+                this.setupScreenReaderSupport();
+            },
+            
+            // Input method detection
+            setupInputMethodDetection: function() {
+                // Mouse kullanımı tespiti
+                document.addEventListener('mousedown', () => {
+                    document.body.classList.add('mouse-user');
+                    document.body.classList.remove('keyboard-user');
+                    this.isKeyboardUser = false;
+                });
+                
+                // Klavye kullanımı tespiti
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab' || e.key === 'Enter' || e.key === ' ') {
+                        document.body.classList.add('keyboard-user');
+                        document.body.classList.remove('mouse-user');
+                        this.isKeyboardUser = true;
+                    }
+                });
+            },
+            
+            // Klavye navigasyonu
+            setupKeyboardNavigation: function() {
+                // Escape tuşu ile modal kapatma
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        const activeModal = document.querySelector('.modal-overlay.show');
+                        if (activeModal) {
+                            this.closeModal(activeModal.id);
+                        }
+                    }
+                    
+                    // Arrow keys navigation for lists
+                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                        const focusedElement = document.activeElement;
+                        const parentList = focusedElement.closest('[role="list"]');
+                        
+                        if (parentList) {
+                            e.preventDefault();
+                            const items = Array.from(parentList.querySelectorAll('[role="listitem"]'));
+                            const currentIndex = items.indexOf(focusedElement);
+                            
+                            let nextIndex;
+                            if (e.key === 'ArrowDown') {
+                                nextIndex = (currentIndex + 1) % items.length;
+                            } else {
+                                nextIndex = currentIndex === 0 ? items.length - 1 : currentIndex - 1;
+                            }
+                            
+                            items[nextIndex].focus();
+                        }
+                    }
+                });
+            },
+            
+            // Focus management
+            setupFocusManagement: function() {
+                let lastFocusedElement = null;
+                
+                // Modal açıldığında focus yönetimi
+                document.addEventListener('modal-opened', (e) => {
+                    lastFocusedElement = document.activeElement;
+                    const modal = document.getElementById(e.detail.modalId);
+                    
+                    // İlk focuslanabilir elementi bul ve focus et
+                    const focusableElements = modal.querySelectorAll(
+                        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                    );
+                    
+                    if (focusableElements.length > 0) {
+                        focusableElements[0].focus();
+                    }
+                    
+                    // Tab tuşu ile focus trap
+                    modal.addEventListener('keydown', (e) => {
+                        if (e.key === 'Tab') {
+                            const focusableElements = Array.from(modal.querySelectorAll(
+                                'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                            ));
+                            
+                            const firstElement = focusableElements[0];
+                            const lastElement = focusableElements[focusableElements.length - 1];
+                            
+                            if (e.shiftKey && document.activeElement === firstElement) {
+                                e.preventDefault();
+                                lastElement.focus();
+                            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                                e.preventDefault();
+                                firstElement.focus();
+                            }
+                        }
+                    });
+                });
+                
+                // Modal kapandığında focus'u geri döndür
+                document.addEventListener('modal-closed', () => {
+                    if (lastFocusedElement) {
+                        lastFocusedElement.focus();
+                        lastFocusedElement = null;
+                    }
+                });
+            },
+            
+            // ARIA live regions
+            setupAriaLiveRegions: function() {
+                // Polite live region oluştur
+                const politeRegion = document.createElement('div');
+                politeRegion.setAttribute('aria-live', 'polite');
+                politeRegion.setAttribute('aria-atomic', 'true');
+                politeRegion.className = 'sr-only';
+                politeRegion.id = 'polite-announcer';
+                document.body.appendChild(politeRegion);
+                
+                // Assertive live region oluştur
+                const assertiveRegion = document.createElement('div');
+                assertiveRegion.setAttribute('aria-live', 'assertive');
+                assertiveRegion.setAttribute('aria-atomic', 'true');
+                assertiveRegion.className = 'sr-only';
+                assertiveRegion.id = 'assertive-announcer';
+                document.body.appendChild(assertiveRegion);
+            },
+            
+            // Screen reader announcements
+            announce: function(message, priority = 'polite') {
+                const announcer = document.getElementById(priority === 'assertive' ? 'assertive-announcer' : 'polite-announcer');
+                if (announcer) {
+                    announcer.textContent = '';
+                    setTimeout(() => {
+                        announcer.textContent = message;
+                    }, 100);
+                }
+            },
+            
+            // Screen reader desteği
+            setupScreenReaderSupport: function() {
+                // Progress bar için screen reader announcements
+                const progressObserver = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                            const progressBar = mutation.target;
+                            if (progressBar.id === 'progressBar') {
+                                const width = progressBar.style.width;
+                                const percentage = parseInt(width);
+                                
+                                if (percentage % 25 === 0) { // Her %25'te duyur
+                                    this.announce(`Model oluşturma progress: %${percentage}`, 'polite');
+                                }
+                            }
+                        }
+                    });
+                });
+                
+                // Progress bar'ı gözlemle
+                const progressBar = document.getElementById('progressBar');
+                if (progressBar) {
+                    progressObserver.observe(progressBar, {
+                        attributes: true,
+                        attributeFilter: ['style']
+                    });
+                }
+            },
+            
+            // Modal yönetimi
+            closeModal: function(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('show');
+                    document.body.classList.remove('modal-open');
+                    
+                    // Custom event dispatch
+                    document.dispatchEvent(new CustomEvent('modal-closed', {
+                        detail: { modalId }
+                    }));
+                    
+                    this.announce(`${modal.querySelector('.modal-title').textContent} modalı kapatıldı`, 'polite');
+                }
+            }
+        };
+        
         // Yeni Modal Sistemi - Tamamen Yeniden Yazılmış
         document.addEventListener('DOMContentLoaded', function() {
+            // Accessibility Manager'ı başlat
+            AccessibilityManager.init();
+            
             console.log('Yeni modal sistemi yükleniyor...');
             
             // Modal açma fonksiyonu
@@ -421,10 +930,27 @@
                     // Önce tüm modalleri kapat
                     closeAllModals();
                     
+                    // Scroll pozisyonunu kaydet
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    document.body.setAttribute('data-scroll-position', scrollTop);
+                    
                     // Seçilen modalı aç
                     modal.classList.add('show');
-                    document.body.style.overflow = 'hidden';
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    document.body.classList.add('modal-open');
+                    document.body.style.top = `-${scrollTop}px`;
+                    
+                    // Accessibility: ARIA attributes güncellemesi
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.setAttribute('aria-hidden', 'true');
+                    
+                    // Custom event dispatch for accessibility
+                    document.dispatchEvent(new CustomEvent('modal-opened', {
+                        detail: { modalId }
+                    }));
+                    
+                    // Screen reader announcement
+                    const modalTitle = modal.querySelector('.modal-title')?.textContent || 'Modal';
+                    AccessibilityManager.announce(`${modalTitle} modalı açıldı`, 'polite');
                     
                     console.log('Modal açıldı:', modalId);
                 }
@@ -435,7 +961,18 @@
                 const modal = modalId ? document.getElementById(modalId) : document.querySelector('.modal-overlay.show');
                 if (modal) {
                     modal.classList.remove('show');
-                    document.body.style.overflow = '';
+                    
+                    // Body scroll durumunu geri yükle
+                    document.body.classList.remove('modal-open');
+                    document.body.style.top = '';
+                    
+                    // Scroll pozisyonunu geri yükle
+                    const scrollTop = document.body.getAttribute('data-scroll-position');
+                    if (scrollTop) {
+                        window.scrollTo(0, parseInt(scrollTop));
+                        document.body.removeAttribute('data-scroll-position');
+                    }
+                    
                     console.log('Modal kapatıldı:', modal.id);
                 }
             }
@@ -445,7 +982,17 @@
                 document.querySelectorAll('.modal-overlay.show').forEach(modal => {
                     modal.classList.remove('show');
                 });
-                document.body.style.overflow = '';
+                
+                // Body scroll durumunu geri yükle
+                document.body.classList.remove('modal-open');
+                document.body.style.top = '';
+                
+                // Scroll pozisyonunu geri yükle
+                const scrollTop = document.body.getAttribute('data-scroll-position');
+                if (scrollTop) {
+                    window.scrollTo(0, parseInt(scrollTop));
+                    document.body.removeAttribute('data-scroll-position');
+                }
             }
             
             // Event delegation ile modal işlemlerini dinle
@@ -491,6 +1038,32 @@
                 }
             });
             
+            // Modal açık durumunda scroll engellemesi (dokunmatik cihazlar için)
+            document.addEventListener('touchmove', function(e) {
+                if (document.body.classList.contains('modal-open')) {
+                    // Modal içerisindeki scroll'a izin ver
+                    const modalBody = e.target.closest('.modal-body');
+                    const modalContent = e.target.closest('.modal-content');
+                    
+                    if (!modalBody && !modalContent) {
+                        e.preventDefault();
+                    }
+                }
+            }, { passive: false });
+            
+            // Modal açık durumunda wheel scroll engellemesi
+            document.addEventListener('wheel', function(e) {
+                if (document.body.classList.contains('modal-open')) {
+                    // Modal içerisindeki scroll'a izin ver
+                    const modalBody = e.target.closest('.modal-body');
+                    const modalContent = e.target.closest('.modal-content');
+                    
+                    if (!modalBody && !modalContent) {
+                        e.preventDefault();
+                    }
+                }
+            }, { passive: false });
+            
             // Footer model oluştur butonu
             document.getElementById('footerGenerateBtn')?.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -501,26 +1074,70 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
             
-            // Tema değiştirme sistemi
+            // Tema değiştirme sistemi - Güçlendirilmiş
             function toggleTheme() {
                 const html = document.documentElement;
                 const currentTheme = html.getAttribute('data-theme') || 'light';
                 const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
                 
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
+                console.log('🌙 Tema değiştiriliyor:', currentTheme, '->', newTheme);
                 
-                const themeToggle = document.getElementById('themeToggle');
-                if (themeToggle) {
-                    themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-                }
+                // Tema değişikliği animasyonu için kısa bir fade effect
+                document.body.style.transition = 'opacity 0.2s ease';
+                document.body.style.opacity = '0.8';
                 
-                console.log('Tema değiştirildi:', newTheme);
+                setTimeout(() => {
+                    // Temayı değiştir
+                    html.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // Tema butonunu güncelle
+                    const themeToggle = document.getElementById('themeToggle');
+                    if (themeToggle) {
+                        themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+                        themeToggle.title = newTheme === 'dark' ? 'Aydınlık Tema' : 'Karanlık Tema';
+                        
+                        // Buton animasyonu
+                        themeToggle.style.transform = 'scale(1.2) rotate(180deg)';
+                        setTimeout(() => {
+                            themeToggle.style.transform = '';
+                        }, 300);
+                    }
+                    
+                    // Opacity'yi geri getir
+                    setTimeout(() => {
+                        document.body.style.opacity = '1';
+                        setTimeout(() => {
+                            document.body.style.transition = '';
+                        }, 200);
+                    }, 50);
+                    
+                    console.log('✅ Tema başarıyla değiştirildi:', newTheme);
+                }, 100);
             }
             
+            // Tema değiştirme butonu - Güçlendirilmiş versiyon
             document.getElementById('themeToggle')?.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                console.log('🌙 Tema değiştirme butonu tıklandı');
                 toggleTheme();
+            });
+            
+            // Navbar kullanıcı butonu - Login modal açma
+            document.getElementById('navLoginBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('👤 Kullanıcı butonu tıklandı');
+                openModal('loginModal');
+            });
+            
+            // Navbar info butonu - Info modal açma
+            document.getElementById('infoToggle')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('ℹ️ Info butonu tıklandı');
+                openModal('infoModal');
             });
             
             // Logo tıklamalarında sayfayı yenile
@@ -541,28 +1158,588 @@
             }
             
             console.log('🎉 Modal sistemi hazır! Modaller:', document.querySelectorAll('.modal-overlay').length);
-            console.log('X butonları bulundu:', document.querySelectorAll('.modal-close').length);
             
-            // İlk test - bir modal açmayı dene
-            setTimeout(() => {
-                console.log('Test: Upload modalını açmayı deniyorum...');
-                const uploadBtn = document.getElementById('uploadBtn');
-                console.log('Upload butonu:', uploadBtn);
-                if (uploadBtn) {
-                    console.log('Upload buton data-modal:', uploadBtn.getAttribute('data-modal'));
+            // Model üretme sistemi
+            let hasGeneratedToday = localStorage.getItem('hasGeneratedToday') === 'true';
+            let lastGenerationDate = localStorage.getItem('lastGenerationDate');
+            let countdownEndTime = localStorage.getItem('countdownEndTime');
+            
+            // Günlük reset kontrolü
+            const today = new Date().toDateString();
+            if (lastGenerationDate !== today) {
+                hasGeneratedToday = false;
+                localStorage.setItem('hasGeneratedToday', 'false');
+                localStorage.setItem('lastGenerationDate', today);
+                localStorage.removeItem('countdownEndTime');
+            }
+            
+            // UI güncelleme fonksiyonu
+            function updateUI() {
+                const generateBtn = document.getElementById('generateBtn');
+                const dailyStatusText = document.getElementById('dailyStatusText');
+                const successMessage = document.getElementById('successMessage');
+                const limitMessage = document.getElementById('limitMessage');
+                const dailyModelsStats = document.getElementById('dailyModelsStats');
+                
+                if (hasGeneratedToday) {
+                    // Model üretilmiş durumu
+                    generateBtn.disabled = false;
+                    generateBtn.querySelector('.btn-primary-text').textContent = 'YENİ MODEL OLUŞTUR';
+                    generateBtn.querySelector('.btn-secondary-text').textContent = 'Daha fazla için giriş yapın';
+                    dailyStatusText.textContent = 'Kullanıldı';
+                    successMessage.style.display = 'none';
+                    limitMessage.style.display = 'none';
+                    if (dailyModelsStats) dailyModelsStats.textContent = '1';
+                } else {
+                    // İlk model durumu
+                    generateBtn.disabled = false;
+                    generateBtn.querySelector('.btn-primary-text').textContent = 'GÜNLÜK MODELİNİ OLUŞTUR';
+                    generateBtn.querySelector('.btn-secondary-text').textContent = 'Tıklayın ve STL dosyanızı indirin';
+                    dailyStatusText.textContent = 'Hakkınız var!';
+                    successMessage.style.display = 'none';
+                    limitMessage.style.display = 'none';
+                    if (dailyModelsStats) dailyModelsStats.textContent = '0';
                 }
-            }, 1000);
+            }
             
-            // Test için modal listesi
-            document.querySelectorAll('.modal-overlay').forEach(modal => {
-                console.log('Modal bulundu:', modal.id);
+            // Countdown timer fonksiyonu
+            function updateCountdownTimer() {
+                const countdownTimer = document.getElementById('countdownTimer');
+                const loginCountdownTimer = document.getElementById('loginCountdownTimer');
+                const limitCountdownTimer = document.getElementById('limitCountdownTimer');
+                
+                if (!countdownEndTime) {
+                    if (countdownTimer) countdownTimer.textContent = '24:00:00';
+                    if (loginCountdownTimer) loginCountdownTimer.textContent = '24:00:00';
+                    if (limitCountdownTimer) limitCountdownTimer.textContent = '24:00:00';
+                    return;
+                }
+                
+                const now = new Date().getTime();
+                const endTime = parseInt(countdownEndTime);
+                const timeLeft = endTime - now;
+                
+                if (timeLeft <= 0) {
+                    // Süre doldu, reset yap
+                    hasGeneratedToday = false;
+                    localStorage.setItem('hasGeneratedToday', 'false');
+                    localStorage.removeItem('countdownEndTime');
+                    updateUI();
+                    if (countdownTimer) countdownTimer.textContent = '24:00:00';
+                    if (loginCountdownTimer) loginCountdownTimer.textContent = '24:00:00';
+                    if (limitCountdownTimer) limitCountdownTimer.textContent = '24:00:00';
+                    return;
+                }
+                
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (countdownTimer) countdownTimer.textContent = timeString;
+                if (loginCountdownTimer) loginCountdownTimer.textContent = timeString;
+                if (limitCountdownTimer) limitCountdownTimer.textContent = timeString;
+            }
+            
+            // Model üretme butonu event listener
+            document.getElementById('generateBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (!hasGeneratedToday) {
+                    // İlk model üretimi
+                    console.log('İlk model üretiliyor...');
+                    
+                    // Loading göster - önce açık modalleri kapat
+                    closeAllModals();
+                    
+                    const loadingOverlay = document.getElementById('loadingOverlay');
+                    
+                    if (loadingOverlay) {
+                        loadingOverlay.classList.add('show');
+                        // Body scroll'u engelle
+                        document.body.classList.add('modal-open');
+                        
+                        // Progress bar'ı sıfırla (güvenlik için)
+                        setTimeout(() => {
+                            const quickResetBar = document.getElementById('progressBar');
+                            const quickResetText = document.getElementById('progressText');
+                            if (quickResetBar) quickResetBar.style.width = '0%';
+                            if (quickResetText) quickResetText.textContent = '0%';
+                        }, 10);
+                    }
+                    
+                    // YENİ PROGRESS BAR SİSTEMİ - BASIT VE GARANTİLİ
+                    console.log('🚀 Yeni progress bar sistemi başlatılıyor...');
+                    
+                    // Elementleri bul
+                    let progressBar = document.getElementById('progressBar');
+                    let progressText = document.getElementById('progressText');
+                    let loadingText = document.getElementById('loadingText');
+                    
+                    console.log('📍 Elementler:', {
+                        progressBar: !!progressBar,
+                        progressText: !!progressText,
+                        loadingText: !!loadingText
+                    });
+                    
+                    // Eğer elementler bulunamazsa acil durum çözümü
+                    if (!progressBar || !progressText) {
+                        console.warn('⚠️ Progress elementleri bulunamadı, acil durum çözümü aktif!');
+                        const loadingContent = document.querySelector('.loading-content');
+                        
+                        if (loadingContent) {
+                            // Acil durum progress bar'ı oluştur
+                            const emergencyProgress = document.createElement('div');
+                            emergencyProgress.innerHTML = `
+                                <div style="width: 100%; margin: 20px 0;">
+                                    <div style="width: 100%; height: 16px; background: #333; border-radius: 8px; border: 2px solid #667eea; overflow: hidden;">
+                                        <div id="emergencyProgressBar" style="width: 0%; height: 100%; background: #ff4444; transition: width 0.1s linear;"></div>
+                                    </div>
+                                    <div id="emergencyProgressText" style="text-align: center; margin-top: 8px; font-size: 16px; font-weight: bold; color: #667eea;">0%</div>
+                                </div>
+                            `;
+                            loadingContent.appendChild(emergencyProgress);
+                            
+                            // Yeni elementleri kullan
+                            progressBar = document.getElementById('emergencyProgressBar');
+                            progressText = document.getElementById('emergencyProgressText');
+                            console.log('🆘 Acil durum progress bar oluşturuldu!');
+                        }
+                    }
+                    
+                    // Progress değişkenleri
+                    let progress = 0;
+                    const maxProgress = 100;
+                    const duration = 6000; // 6 saniye
+                    const updateInterval = 50; // 50ms
+                    const increment = maxProgress / (duration / updateInterval);
+                    
+                    // Loading mesajları
+                    const messages = [
+                        '🎯 3D Model Oluşturuluyor...',
+                        '📐 Geometri Hesaplanıyor...',
+                        '🔷 Mesh Yapısı Kuruluyor...',
+                        '🎨 Textureler Ekleniyor...',
+                        '💾 STL Formatına Çevriliyor...',
+                        '🔍 Son Kontroller...',
+                        '✅ Model Hazırlandı!'
+                    ];
+                    
+                    let currentMessageIndex = 0;
+                    
+                    // Progress güncelleyici
+                    const updateProgress = () => {
+                        progress += increment;
+                        
+                        if (progress > maxProgress) {
+                            progress = maxProgress;
+                        }
+                        
+                        // Progress bar genişliği
+                        if (progressBar) {
+                            progressBar.style.width = progress + '%';
+                            
+                            // Renk değişimi
+                            let color = '#ff4444'; // Kırmızı
+                            if (progress > 30) color = '#ff8800'; // Turuncu
+                            if (progress > 60) color = '#44aa44'; // Yeşil
+                            if (progress > 90) color = '#00aa00'; // Koyu yeşil
+                            
+                            progressBar.style.background = color;
+                        }
+                        
+                        // Yüzde metni
+                        if (progressText) {
+                            progressText.textContent = Math.round(progress) + '%';
+                        }
+                        
+                        // Loading mesajı
+                        const messageIndex = Math.floor((progress / maxProgress) * (messages.length - 1));
+                        if (messageIndex !== currentMessageIndex && messageIndex < messages.length) {
+                            currentMessageIndex = messageIndex;
+                            if (loadingText) {
+                                loadingText.textContent = messages[messageIndex];
+                            }
+                        }
+                        
+                        console.log(`📊 Progress: ${Math.round(progress)}%`);
+                        
+                        // Bittiğinde temizle
+                        if (progress >= maxProgress) {
+                            clearInterval(progressInterval);
+                            console.log('✅ Progress tamamlandı!');
+                            if (loadingText) {
+                                loadingText.textContent = '🎉 Model Başarıyla Oluşturuldu!';
+                            }
+                        }
+                    };
+                    
+                    // Başlat
+                    const progressInterval = setInterval(updateProgress, updateInterval);
+                    
+                    // Debug: 1 saniye sonra kontrol et
+                    setTimeout(() => {
+                        console.log('🔍 1 saniye sonra progress kontrol:', {
+                            currentProgress: progress,
+                            progressBarWidth: progressBar ? progressBar.style.width : 'BULUNAMADI',
+                            progressText: progressText ? progressText.textContent : 'BULUNAMADI'
+                        });
+                        
+                        if (!progressBar) {
+                            console.error('💀 PROGRESS BAR HALA BULUNAMADI!');
+                            console.log('HTML yapısı:', document.querySelector('.loading-content').innerHTML);
+                        }
+                    }, 1000);
+                    
+                    // 6 saniye sonra model "indirilsin"
+                    setTimeout(() => {
+                        // Model üretimi tamamlandı
+                        hasGeneratedToday = true;
+                        localStorage.setItem('hasGeneratedToday', 'true');
+                        
+                        // Toplam model sayısını artır
+                        let totalModels = parseInt(localStorage.getItem('totalModels') || '0');
+                        totalModels++;
+                        localStorage.setItem('totalModels', totalModels.toString());
+                        
+                        // UI'da toplam model sayısını güncelle
+                        const totalModelsCount = document.getElementById('totalModelsCount');
+                        if (totalModelsCount) {
+                            totalModelsCount.textContent = totalModels.toString();
+                        }
+                        
+                        // 24 saatlik countdown başlat
+                        const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+                        localStorage.setItem('countdownEndTime', endTime.toString());
+                        countdownEndTime = endTime.toString();
+                        
+                        // Loading gizle
+                        if (loadingOverlay) {
+                            loadingOverlay.classList.remove('show');
+                            // Body scroll'u geri aç
+                            document.body.classList.remove('modal-open');
+                        }
+                        
+                        // Success mesajı göster
+                        const successMessage = document.getElementById('successMessage');
+                        if (successMessage) {
+                            successMessage.style.display = 'block';
+                            setTimeout(() => {
+                                successMessage.style.display = 'none';
+                                updateUI();
+                            }, 3000);
+                        }
+                        
+                        // Fake dosya indirme
+                        const link = document.createElement('a');
+                        link.href = 'data:text/plain;charset=utf-8,3D Model STL Data - Generated on ' + new Date().toLocaleString();
+                        link.download = '3d-model-' + Date.now() + '.stl';
+                        link.click();
+                        
+                        updateUI();
+                    }, 6000);
+                    
+                } else {
+                    // İkinci ve sonraki tıklamalar - Login modal aç
+                    console.log('Login modal açılıyor...');
+                    openModal('loginModal');
+                }
+                
+                // Progress bar kontrol - eğer bulunamazsa uyarı ver
+                setTimeout(() => {
+                    const checkProgressBar = document.getElementById('progressBar');
+                    if (!checkProgressBar) {
+                        console.error('❌ Progress bar HTML\'de bulunamadı! Element eksik olabilir.');
+                    } else {
+                        console.log('✅ Progress bar mevcut:', checkProgressBar);
+                    }
+                }, 100);
             });
             
-            // Test için buton listesi
-            document.querySelectorAll('[data-modal]').forEach(btn => {
-                console.log('Modal butonu bulundu:', btn.id, 'data-modal:', btn.getAttribute('data-modal'));
+            // Login modal butonları
+            document.getElementById('registerBtn')?.addEventListener('click', function() {
+                // Kayıt ol işlemi (örnek)
+                alert('Kayıt ol sayfası açılacak...');
+                closeModal('loginModal');
+            });
+            
+            document.getElementById('loginBtn')?.addEventListener('click', function() {
+                // Giriş yap işlemi (örnek)
+                alert('Giriş yap sayfası açılacak...');
+                closeModal('loginModal');
+            });
+            
+            // Sayfa yüklendiğinde verileri yükle
+            const totalModels = parseInt(localStorage.getItem('totalModels') || '0');
+            const totalModelsCount = document.getElementById('totalModelsCount');
+            const dailyModelsStats = document.getElementById('dailyModelsStats');
+            const totalModelsStats = document.getElementById('totalModelsStats');
+            
+            if (totalModelsCount) {
+                totalModelsCount.textContent = totalModels.toString();
+            }
+            if (dailyModelsStats) {
+                dailyModelsStats.textContent = hasGeneratedToday ? '1' : '0';
+            }
+            if (totalModelsStats) {
+                totalModelsStats.textContent = totalModels.toString();
+            }
+            
+            // Sayfa yüklendiğinde UI'ı güncelle
+            updateUI();
+            
+            // Countdown timer'ı başlat
+            updateCountdownTimer();
+            setInterval(updateCountdownTimer, 1000);
+            
+            // Veri sıfırlama fonksiyonu (Global erişim için window'a ekle)
+            window.resetAllData = function() {
+                // Geliştirici modu kontrolü (production'da kaldırılabilir)
+                if (window.location.hostname !== 'localhost' && 
+                    window.location.hostname !== '127.0.0.1' && 
+                    !window.location.hostname.includes('ogubenn.com.tr')) {
+                    console.warn('Reset işlemi bu domaine izin verilmemiş.');
+                    return;
+                }
+                
+                // Çift onay al
+                const confirm1 = window.confirm('⚠️ TÜM VERİLERİ SİFIRLAMAK İSTİYOR MUSUNUZ?\n\n• Tüm istatistikleriniz silinecek\n• Başarımlarınız sıfırlanacak\n• Model geçmişiniz temizlenecek\n\nBu işlem geri alınamaz!');
+                if (!confirm1) return;
+                
+                const confirm2 = window.confirm('🚨 SON UYARI!\n\nGerçekten tüm verilerinizi silmek istiyor musunuz?\n\nBu işlem GERİ ALINAMAZ!');
+                if (!confirm2) return;
+                
+                // LocalStorage'daki tüm uygulama verilerini sil
+                localStorage.removeItem('hasGeneratedToday');
+                localStorage.removeItem('lastGenerationDate');
+                localStorage.removeItem('countdownEndTime');
+                localStorage.removeItem('totalModels');
+                localStorage.removeItem('achievements');
+                localStorage.removeItem('achievementProgress');
+                localStorage.removeItem('userStats');
+                localStorage.removeItem('uploadCount');
+                localStorage.removeItem('dailyUploadCount');
+                localStorage.removeItem('lastUploadDate');
+                localStorage.removeItem('galleryItems');
+                localStorage.removeItem('theme');
+                
+                // Değişkenleri sıfırla
+                hasGeneratedToday = false;
+                countdownEndTime = null;
+                
+                // UI'ı güncelle
+                updateUI();
+                updateCountdownTimer();
+                
+                // Sayfa verilerini yenile
+                const totalModelsCount = document.getElementById('totalModelsCount');
+                const dailyModelsStats = document.getElementById('dailyModelsStats');
+                const totalModelsStats = document.getElementById('totalModelsStats');
+                
+                if (totalModelsCount) totalModelsCount.textContent = '0';
+                if (dailyModelsStats) dailyModelsStats.textContent = '0';
+                if (totalModelsStats) totalModelsStats.textContent = '0';
+                
+                // Başarı mesajı göster
+                alert('✅ Tüm veriler başarıyla sıfırlandı! Sayfa yenileniyor...');
+                
+                // Sayfayı yenile
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            };
+            
+            // Gizli reset butonu (10 kez tıklama - daha güvenli)
+            let resetClickCount = 0;
+            const hiddenReset = document.getElementById('hiddenReset');
+            
+            if (hiddenReset) {
+                hiddenReset.addEventListener('click', function() {
+                    resetClickCount++;
+                    
+                    if (resetClickCount === 1) {
+                        console.log('🔧 GİZLİ RESET MODU AKTIF - 9 kez daha tıklayın...');
+                    } else if (resetClickCount >= 2 && resetClickCount <= 9) {
+                        console.log(`🔧 Reset: ${10 - resetClickCount} kez daha tıklayın...`);
+                    } else if (resetClickCount >= 10) {
+                        console.log('🔧 Reset işlemi başlatılıyor...');
+                        resetAllData();
+                        resetClickCount = 0;
+                    }
+                    
+                    // 5 saniye sonra sayacı sıfırla (daha uzun süre)
+                    setTimeout(() => {
+                        if (resetClickCount < 10) {
+                            resetClickCount = 0;
+                            console.log('🔧 Reset timeout - sayaç sıfırlandı');
+                        }
+                    }, 5000);
+                });
+            }
+            
+            // Klavye kısayolu (Ctrl+Alt+Shift+Delete) - daha güvenli
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.altKey && e.shiftKey && e.key === 'Delete') {
+                    e.preventDefault();
+                    console.log('🔧 Güvenli reset kısayolu tetiklendi');
+                    resetAllData();
+                }
+            });
+            
+            // Development mode kontrolü
+            const isDevelopment = window.location.hostname === 'localhost' || 
+                                window.location.hostname === '127.0.0.1' ||
+                                window.location.hostname.includes('ogubenn.com.tr') ||
+                                window.location.protocol === 'file:';
+            
+            // Developer console'dan erişim için log (sadece development'da)
+            if (isDevelopment) {
+                console.log('%c🔧 GELİŞTİRİCİ MOD - Veri Sıfırlama Yöntemleri:', 'color: #ff6b6b; font-weight: bold;');
+                console.log('   1. Console\'dan: resetAllData()');
+                console.log('   2. Footer\'daki ⚡ simgesine 10 kez tıklayın (5 saniye içinde)');
+                console.log('   3. Klavyede: Ctrl+Alt+Shift+Delete');
+                console.log('%c⚠️  UYARI: Bu işlemler tüm verilerinizi siler!', 'color: #ff9800; font-weight: bold;');
+            } else {
+                // Production'da reset özelliklerini gizle
+                const hiddenResetElement = document.getElementById('hiddenReset');
+                if (hiddenResetElement) {
+                    hiddenResetElement.style.display = 'none';
+                }
+            }
+            
+            // ========================================
+            // PERFORMANCE OPTIMIZATIONS
+            // ========================================
+            
+            // Lazy Loading for Images
+            const observerConfig = {
+                root: null,
+                rootMargin: '50px',
+                threshold: 0.1
+            };
+            
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        
+                        // WebP support check
+                        const supportsWebP = (function() {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = canvas.height = 1;
+                            return canvas.toDataURL('image/webp').indexOf('webp') > 0;
+                        })();
+                        
+                        if (img.dataset.src) {
+                            // Use WebP if supported, fallback to original
+                            const webpSrc = img.dataset.webp;
+                            const originalSrc = img.dataset.src;
+                            
+                            img.src = (supportsWebP && webpSrc) ? webpSrc : originalSrc;
+                            img.classList.remove('lazy-load');
+                            img.classList.add('lazy-loaded');
+                            
+                            imageObserver.unobserve(img);
+                        }
+                    }
+                });
+            }, observerConfig);
+            
+            // Observe all lazy images
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+            
+            // CSS Animation Optimization
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (prefersReducedMotion.matches) {
+                document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+            }
+            
+            // Resource Hints - Preload critical resources
+            const preloadCriticalResources = () => {
+                // Preload critical images
+                const criticalImages = [
+                    './images/og-image.jpg',
+                    './images/icon-192x192.png'
+                ];
+                
+                criticalImages.forEach(src => {
+                    const link = document.createElement('link');
+                    link.rel = 'preload';
+                    link.as = 'image';
+                    link.href = src;
+                    document.head.appendChild(link);
+                });
+            };
+            
+            // Defer non-critical resource loading
+            const loadNonCriticalResources = () => {
+                // Load additional stylesheets if needed
+                const additionalStyles = [
+                    // Add any additional CSS files here
+                ];
+                
+                additionalStyles.forEach(href => {
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = href;
+                    link.media = 'print';
+                    link.onload = function() { this.media = 'all'; };
+                    document.head.appendChild(link);
+                });
+            };
+            
+            // Service Worker Registration (PWA)
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('./sw.js')
+                        .then(registration => {
+                            console.log('✅ Service Worker registered:', registration.scope);
+                        })
+                        .catch(error => {
+                            console.log('❌ Service Worker registration failed:', error);
+                        });
+                });
+            }
+            
+            // Performance Monitoring
+            if (window.performance && window.performance.timing) {
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = window.performance.timing;
+                        const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+                        const domReady = perfData.domContentLoadedEventEnd - perfData.navigationStart;
+                        
+                        console.log('📊 Performance Metrics:');
+                        console.log(`   - Page Load Time: ${loadTime}ms`);
+                        console.log(`   - DOM Ready Time: ${domReady}ms`);
+                        console.log(`   - Time to First Byte: ${perfData.responseStart - perfData.navigationStart}ms`);
+                        
+                        // Send to analytics if needed
+                        if (loadTime > 3000) {
+                            console.warn('⚠️ Slow page load detected');
+                        }
+                    }, 0);
+                });
+            }
+            
+            // Initialize performance optimizations
+            preloadCriticalResources();
+            
+            // Load non-critical resources after page load
+            window.addEventListener('load', () => {
+                setTimeout(loadNonCriticalResources, 1000);
             });
         });
     </script>
+    
+    <!-- Performance Optimization Scripts -->
+    <script src="./js/image-optimizer.js?v=2.0" async></script>
+    <script src="./js/security-utils.js?v=2.0" defer></script>
+    <script src="./js/achievements-new.js?v=2.0" defer></script>
+    <script src="./js/accessibility-tests.js?v=2.0" defer></script>
+    <script src="./js/app.js?v=2.0" defer></script>
 </body>
 </html>

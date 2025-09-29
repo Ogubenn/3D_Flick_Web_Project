@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Flick - Güvenlik Testi</title>
+    
+    <!-- Güvenlik Headers Test -->
+    <meta http-equiv="Content-Security-Pol                result.textContent = 'Lütfen test edilecek inputu girin.';cy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data:;
+        font-src 'self';
+        connect-src 'self';
+        media-src 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'none';
+    ">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .test-section.warning {
+            border-left-color: #ff9800;
+        }
+        
+        .test-section.error {
+            border-left-color: #f44336;
+        }
+        
+        .test-result {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        .success {
+            color: #4CAF50;
+        }
+        
+        .warning {
+            color: #ff9800;
+        }
+        
+        .error {
+            color: #f44336;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin: 10px 0;
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Ana Sayfaya Dön</a>
+    
+    <div class="container">
+        <h1>🔒 Güvenlik Testi</h1>
+        
+        <!-- CSP Test -->
+        <div class="test-section">
+            <h2>📋 Content Security Policy (CSP) Testi</h2>
+            <p>Bu test CSP header'larının doğru çalışıp çalışmadığını kontrol eder.</p>
+            <button onclick="testCSP()">CSP Testi Çalıştır</button>
+            <div id="cspResult" class="test-result"></div>
+        </div>
+        
+        <!-- XSS Test -->
+        <div class="test-section warning">
+            <h2>🛡️ XSS Koruma Testi</h2>
+            <p>Zararlı script'lerin çalışıp çalışmadığını test eder.</p>
+            <input type="text" id="xssInput" placeholder="XSS test string'i girin (örn: <script>alert('xss')</script>)">
+            <button onclick="testXSS()">XSS Testi Çalıştır</button>
+            <div id="xssResult" class="test-result"></div>
+        </div>
+        
+        <!-- Input Validation Test -->
+        <div class="test-section">
+            <h2>✅ Input Validation Testi</h2>
+            <p>Güvenli input validation fonksiyonlarını test eder.</p>
+            <textarea id="validationInput" placeholder="Test edilecek input'u girin..." rows="3"></textarea>
+            <button onclick="testValidation()">Validation Testi</button>
+            <div id="validationResult" class="test-result"></div>
+        </div>
+        
+        <!-- LocalStorage Security Test -->
+        <div class="test-section">
+            <h2>💾 LocalStorage Güvenlik Testi</h2>
+            <p>Güvenli localStorage implementation'ını test eder.</p>
+            <button onclick="testLocalStorageSecurity()">LocalStorage Testi</button>
+            <div id="localStorageResult" class="test-result"></div>
+        </div>
+        
+        <!-- Headers Check -->
+        <div class="test-section">
+            <h2>🔍 Security Headers Kontrolü</h2>
+            <p>Mevcut güvenlik header'larını kontrol eder.</p>
+            <button onclick="checkSecurityHeaders()">Headers Kontrolü</button>
+            <div id="headersResult" class="test-result"></div>
+        </div>
+        
+        <!-- Performance vs Security -->
+        <div class="test-section">
+            <h2>⚡ Performance vs Security</h2>
+            <p>Güvenlik önlemlerinin performans üzerindeki etkisini ölçer.</p>
+            <button onclick="performanceTest()">Performance Testi</button>
+            <div id="performanceResult" class="test-result"></div>
+        </div>
+    </div>
+    
+    <script>
+        // SecurityUtils'i kontrol et
+        if (typeof SecurityUtils === 'undefined') {
+            document.body.innerHTML = `
+                <div class="container">
+                    <h1 style="color: #f44336;">❌ Security Utils Yüklenmedi</h1>
+                    <p>SecurityUtils modülü yüklenmelidir. Ana sayfadan yeniden deneyin.</p>
+                    <a href="index.html" style="color: white;">Ana Sayfaya Dön</a>
+                </div>
+            `;
+        }
+        
+        // CSP Testi
+        function testCSP() {
+            const result = document.getElementById('cspResult');
+            let output = '';
+            
+            // CSP meta tag kontrolü
+            const cspMeta = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+            if (cspMeta) {
+                output += '✅ CSP Meta Tag: Mevcut\n';
+                output += `   Content: ${cspMeta.content.substring(0, 100)}...\n\n`;
+            } else {
+                output += '❌ CSP Meta Tag: Eksik\n\n';
+            }
+            
+            // Inline script testi (bu çalışmamalı)
+            try {
+                const script = document.createElement('script');
+                script.textContent = 'console.log("Inline script çalıştı - CSP bypass!");';
+                document.head.appendChild(script);
+                output += '❌ Inline Script: CSP tarafından engellenmedi\n';
+            } catch (e) {
+                output += '✅ Inline Script: CSP tarafından engellendi\n';
+            }
+            
+            // External script testi
+            output += '🔍 External Script Test: CSP sadece izin verilen domainlerden script yüklemeye izin verir\n';
+            
+            result.textContent = output;
+            result.className = 'test-result';
+        }
+        
+        // XSS Koruma Testi
+        function testXSS() {
+            const input = document.getElementById('xssInput').value;
+            const result = document.getElementById('xssResult');
+            
+            if (!input) {
+                result.textContent = 'Lütfen bir test stringi girin.';
+                return;
+            }
+            
+            let output = `Test Input: ${input}\n\n`;
+            
+            // SecurityUtils ile sanitize et
+            if (typeof SecurityUtils !== 'undefined') {
+                const sanitized = SecurityUtils.sanitizeHTML(input);
+                const escaped = SecurityUtils.escapeHTML(input);
+                const isValid = SecurityUtils.validateInput(input);
+                
+                output += `Sanitized: ${sanitized}\n`;
+                output += `Escaped: ${escaped}\n`;
+                output += `Is Valid: ${isValid ? '✅' : '❌'}\n\n`;
+                
+                // DOM'a güvenli ekleme testi
+                const testDiv = document.createElement('div');
+                testDiv.textContent = input; // textContent kullanarak XSS'i engelle
+                output += `DOM Test: Güvenli şekilde textContent ile eklendi\n`;
+                
+                result.className = isValid ? 'test-result success' : 'test-result warning';
+            } else {
+                output += '❌ SecurityUtils mevcut değil\n';
+                result.className = 'test-result error';
+            }
+            
+            result.textContent = output;
+        }
+        
+        // Input Validation Testi
+        function testValidation() {
+            const input = document.getElementById('validationInput').value;
+            const result = document.getElementById('validationResult');
+            
+            if (!input) {
+                result.textContent = 'Lütfen test edilecek input\'u girin.';
+                return;
+            }
+            
+            let output = `Test Input: ${input}\n\n`;
+            
+            if (typeof SecurityUtils !== 'undefined') {
+                const isValid = SecurityUtils.validateInput(input);
+                const sanitized = SecurityUtils.sanitizeHTML(input);
+                const escaped = SecurityUtils.escapeHTML(input);
+                
+                output += `Validation Result: ${isValid ? '✅ Geçerli' : '❌ Geçersiz'}\n`;
+                output += `Sanitized: ${sanitized}\n`;
+                output += `Escaped: ${escaped}\n\n`;
+                
+                // Pattern kontrolleri
+                const patterns = [
+                    { name: 'Script Tag', regex: /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi },
+                    { name: 'Javascript URL', regex: /javascript:/gi },
+                    { name: 'Event Handler', regex: /on\w+\s*=/gi },
+                    { name: 'Data URL', regex: /data:text\/html/gi }
+                ];
+                
+                patterns.forEach(pattern => {
+                    const found = pattern.regex.test(input);
+                    output += `${pattern.name}: ${found ? '❌ Tespit edildi' : '✅ Temiz'}\n`;
+                });
+                
+                result.className = isValid ? 'test-result success' : 'test-result error';
+            } else {
+                output += '❌ SecurityUtils mevcut değil\n';
+                result.className = 'test-result error';
+            }
+            
+            result.textContent = output;
+        }
+        
+        // LocalStorage Güvenlik Testi
+        function testLocalStorageSecurity() {
+            const result = document.getElementById('localStorageResult');
+            let output = '';
+            
+            if (typeof SecurityUtils !== 'undefined') {
+                // Güvenli veri yazma testi
+                const testKey = '_security_test_' + Date.now();
+                const safeData = { message: 'Safe data', timestamp: Date.now() };
+                const unsafeData = '<script>alert("xss")</script>';
+                
+                // Güvenli veri testi
+                const safeWriteResult = SecurityUtils.safeLocalStorageSet(testKey + '_safe', safeData);
+                const safeReadResult = SecurityUtils.safeLocalStorageGet(testKey + '_safe');
+                
+                output += `Güvenli Veri Yazma: ${safeWriteResult ? '✅' : '❌'}\n`;
+                output += `Güvenli Veri Okuma: ${safeReadResult ? '✅' : '❌'}\n\n`;
+                
+                // Zararlı veri testi
+                const unsafeWriteResult = SecurityUtils.safeLocalStorageSet(testKey + '_unsafe', unsafeData);
+                output += `Zararlı Veri Yazma: ${unsafeWriteResult ? '❌ İzin verildi' : '✅ Engellendi'}\n\n`;
+                
+                // Temizlik
+                localStorage.removeItem(testKey + '_safe');
+                localStorage.removeItem(testKey + '_unsafe');
+                
+                // LocalStorage boyut kontrolü
+                const storageSize = JSON.stringify(localStorage).length;
+                output += `LocalStorage Boyutu: ${(storageSize / 1024).toFixed(2)} KB\n`;
+                
+                result.className = 'test-result success';
+            } else {
+                output += '❌ SecurityUtils mevcut değil\n';
+                result.className = 'test-result error';
+            }
+            
+            result.textContent = output;
+        }
+        
+        // Security Headers Kontrolü
+        function checkSecurityHeaders() {
+            const result = document.getElementById('headersResult');
+            let output = '';
+            
+            // Meta tag'leri kontrol et
+            const headers = [
+                { name: 'Content-Security-Policy', selector: 'meta[http-equiv="Content-Security-Policy"]' },
+                { name: 'X-Frame-Options', selector: 'meta[http-equiv="X-Frame-Options"]' },
+                { name: 'X-Content-Type-Options', selector: 'meta[http-equiv="X-Content-Type-Options"]' },
+                { name: 'X-XSS-Protection', selector: 'meta[http-equiv="X-XSS-Protection"]' },
+                { name: 'Referrer Policy', selector: 'meta[name="referrer"]' }
+            ];
+            
+            headers.forEach(header => {
+                const element = document.querySelector(header.selector);
+                output += `${header.name}: ${element ? '✅ Mevcut' : '❌ Eksik'}\n`;
+                if (element) {
+                    const content = element.getAttribute('content') || element.getAttribute('name');
+                    output += `  Değer: ${content}\n`;
+                }
+                output += '\n';
+            });
+            
+            // HTTPS kontrolü
+            output += `HTTPS: ${window.location.protocol === 'https:' ? '✅ Aktif' : '⚠️ HTTP kullanılıyor'}\n\n`;
+            
+            // Mixed Content kontrolü
+            const mixedContentWarning = document.querySelector('*[src^="http:"], *[href^="http:"]');
+            output += `Mixed Content: ${mixedContentWarning ? '⚠️ HTTP kaynaklar var' : '✅ Temiz'}\n`;
+            
+            result.textContent = output;
+            result.className = 'test-result';
+        }
+        
+        // Performance vs Security Testi
+        function performanceTest() {
+            const result = document.getElementById('performanceResult');
+            let output = '';
+            
+            // Güvenlik fonksiyonlarının performance etkisi
+            const iterations = 1000;
+            const testData = '<script>alert("xss")</script>'.repeat(10);
+            
+            // Normal string işlemi
+            const start1 = performance.now();
+            for (let i = 0; i < iterations; i++) {
+                const dummy = testData;
+            }
+            const normalTime = performance.now() - start1;
+            
+            // SecurityUtils ile işlem
+            const start2 = performance.now();
+            for (let i = 0; i < iterations; i++) {
+                if (typeof SecurityUtils !== 'undefined') {
+                    SecurityUtils.sanitizeHTML(testData);
+                }
+            }
+            const secureTime = performance.now() - start2;
+            
+            output += `Normal String İşlemi: ${normalTime.toFixed(2)}ms\n`;
+            output += `Güvenlik Kontrolü: ${secureTime.toFixed(2)}ms\n`;
+            output += `Overhead: ${((secureTime - normalTime) / normalTime * 100).toFixed(1)}%\n\n`;
+            
+            // Memory kullanımı (approximation)
+            const memoryInfo = performance.memory;
+            if (memoryInfo) {
+                output += `Kullanılan Memory: ${(memoryInfo.usedJSHeapSize / 1024 / 1024).toFixed(2)} MB\n`;
+                output += `Toplam Memory Limiti: ${(memoryInfo.totalJSHeapSize / 1024 / 1024).toFixed(2)} MB\n`;
+            }
+            
+            result.textContent = output;
+            result.className = 'test-result';
+        }
+    </script>
+</body>
+</html>

@@ -250,8 +250,8 @@ class STLGenerator {
 
     // Daily Limit System
     canGenerateToday() {
-        const lastGen = localStorage.getItem(this.storageKeys.lastGeneration);
-        const generatedToday = parseInt(localStorage.getItem(this.storageKeys.generatedToday) || '0');
+        const lastGen = SecurityUtils.safeLocalStorageGet(this.storageKeys.lastGeneration);
+        const generatedToday = parseInt(SecurityUtils.safeLocalStorageGet(this.storageKeys.generatedToday, '0'));
         
         if (!lastGen) return true;
         
@@ -260,7 +260,7 @@ class STLGenerator {
         
         // Reset if different day
         if (!this.isSameDay(lastGenDate, today)) {
-            localStorage.setItem(this.storageKeys.generatedToday, '0');
+            SecurityUtils.safeLocalStorageSet(this.storageKeys.generatedToday, '0');
             return true;
         }
         
@@ -275,12 +275,12 @@ class STLGenerator {
 
     updateGenerationCount() {
         const now = new Date().toISOString();
-        const generatedToday = parseInt(localStorage.getItem(this.storageKeys.generatedToday) || '0');
-        const totalGenerated = parseInt(localStorage.getItem(this.storageKeys.totalGenerated) || '0');
-        
-        localStorage.setItem(this.storageKeys.lastGeneration, now);
-        localStorage.setItem(this.storageKeys.generatedToday, (generatedToday + 1).toString());
-        localStorage.setItem(this.storageKeys.totalGenerated, (totalGenerated + 1).toString());
+        const generatedToday = parseInt(SecurityUtils.safeLocalStorageGet(this.storageKeys.generatedToday, '0'));
+        const totalGenerated = parseInt(SecurityUtils.safeLocalStorageGet(this.storageKeys.totalGenerated, '0'));
+
+        SecurityUtils.safeLocalStorageSet(this.storageKeys.lastGeneration, now);
+        SecurityUtils.safeLocalStorageSet(this.storageKeys.generatedToday, (generatedToday + 1).toString());
+        SecurityUtils.safeLocalStorageSet(this.storageKeys.totalGenerated, (totalGenerated + 1).toString());
     }
 
     saveGeneration(stlData, fileName) {
@@ -291,13 +291,13 @@ class STLGenerator {
             size: stlData.length
         };
         
-        localStorage.setItem('last_stl', JSON.stringify(generation));
+        SecurityUtils.safeLocalStorageSet('last_stl', generation);
         
         // Save to history (keep last 10)
-        const history = JSON.parse(localStorage.getItem('stl_history') || '[]');
+        const history = SecurityUtils.safeLocalStorageGet('stl_history', []);
         history.unshift(generation);
         if (history.length > 10) history.pop();
-        localStorage.setItem('stl_history', JSON.stringify(history));
+        SecurityUtils.safeLocalStorageSet('stl_history', history);
     }
 
     // UI Updates
@@ -312,7 +312,7 @@ class STLGenerator {
         const statusCard = document.querySelector('.status-card');
         const dailyStatusText = document.getElementById('dailyStatusText');
         
-        const generatedToday = parseInt(localStorage.getItem(this.storageKeys.generatedToday) || '0');
+        const generatedToday = parseInt(SecurityUtils.safeLocalStorageGet(this.storageKeys.generatedToday, '0'));
         const canGenerate = this.canGenerateToday();
         
         if (statusCard) {
@@ -347,8 +347,8 @@ class STLGenerator {
     }
 
     updateStats() {
-        const totalGenerated = localStorage.getItem(this.storageKeys.totalGenerated) || '0';
-        const generatedToday = localStorage.getItem(this.storageKeys.generatedToday) || '0';
+        const totalGenerated = SecurityUtils.safeLocalStorageGet(this.storageKeys.totalGenerated, '0');
+        const generatedToday = SecurityUtils.safeLocalStorageGet(this.storageKeys.generatedToday, '0');
         
         console.log('📊 Stat güncelleniyor:', { totalGenerated, generatedToday });
         

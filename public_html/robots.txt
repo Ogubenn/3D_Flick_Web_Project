@@ -1,0 +1,35 @@
+# 3D Flick - robots.txt
+# https://3dflick.ogubenn.com.tr/robots.txt
+
+User-agent: *
+Allow: /
+
+# Ana sayfa
+Allow: /index.html
+Allow: /*.css
+Allow: /*.js
+Allow: /images/
+Allow: /manifest.json
+
+# Disallow gereksiz dosyalar
+Disallow: /debug.html
+Disallow: /test.html
+Disallow: /*.pdf
+
+# Sitemap
+Sitemap: https://3dflick.ogubenn.com.tr/sitemap.xml
+
+# Crawl-delay (isteğe bağlı)
+Crawl-delay: 1
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+
+# Yandex Bot
+User-agent: YandexBot
+Allow: /

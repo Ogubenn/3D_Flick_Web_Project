@@ -1,0 +1,213 @@
+# 3D Flick - Apache Configuration
+# Performance Optimizations and Security Headers
+
+# Enable compression
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+
+    # Remove browser bugs (only needed for really old browsers)
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    Header append Vary User-Agent
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive on
+
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # Video
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType video/mpeg "access plus 1 year"
+
+    # CSS, JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+
+    # Others
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+
+    # HTML
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Cache-Control Headers
+<IfModule mod_headers.c>
+    # 1 Year for images
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+    
+    # 1 Month for CSS and JS
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=2678400, public"
+    </FilesMatch>
+    
+    # 1 Hour for HTML
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "max-age=3600, public, must-revalidate"
+    </FilesMatch>
+
+    # =====================================
+    # GÜVENLİK HEADERS (Enhanced Security)
+    # =====================================
+    
+    # XSS Protection - Cross-Site Scripting Koruması
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Content Type Sniffing Koruması
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Clickjacking Koruması (DENY yerine SAMEORIGIN kullanıyoruz çünkü embedded content olabilir)
+    Header always set X-Frame-Options "DENY"
+    
+    # Referrer Policy - Gizlilik Koruması
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # HSTS (HTTP Strict Transport Security) - HTTPS Zorlaması
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Permissions Policy (Feature Policy) - Browser API Kısıtlamaları
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), accelerometer=(), gyroscope=(), fullscreen=(self)"
+    
+    # Cross-Origin Policies
+    Header always set Cross-Origin-Embedder-Policy "require-corp"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Cross-Origin-Resource-Policy "same-site"
+    
+    # Güvenlik için gereksiz header bilgilerini gizle
+    Header always unset Server
+    Header always unset X-Powered-By
+    
+    # Content Security Policy (Güçlendirilmiş)
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; connect-src 'self' https://www.google-analytics.com; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
+</IfModule>
+
+# Enable ETags
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# Force HTTPS (if SSL is available)
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# =====================================
+# XSS ve INJECTION KORUMALARI
+# =====================================
+
+<IfModule mod_rewrite.c>
+    # SQL Injection ve XSS pattern'leri engelle
+    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*object.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*embed.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (union|select|insert|drop|delete|update|create|alter) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\.\./|\.\.\%2F) [NC,OR]
+    RewriteCond %{QUERY_STRING} (javascript\:|data\:|vbscript\:) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*(\>|%3E) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+    
+    # Şüpheli User-Agent'ları engelle
+    RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} (%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%22|%27|%28|%3C|%3E|%00).*(libwww-perl|wget|python|nikto|curl|scan|java|winhttp|HTTrack|clshttp|archiver|loader|email|harvest|extract|grab|miner) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+    
+    # Zararlı bot'ları engelle (ama iyi bot'ları koru)
+    RewriteCond %{HTTP_USER_AGENT} (bot|crawl|slurp|spider|archiver|harvester|scraper) [NC]
+    RewriteCond %{HTTP_USER_AGENT} !(googlebot|bingbot|yahoo|baidu|yandex|facebook|twitter|linkedin|whatsapp) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+# =====================================
+# DOSYA KORUMA (File Protection)
+# =====================================
+
+# Hassas dosyalara erişimi engelle
+<FilesMatch "(^#.*#|\.(htaccess|htpasswd|ini|log|sh|sql|conf|bak|old|tmp|config|dist|fla|inc|psd|sw[op])|~)$">
+    Require all denied
+</FilesMatch>
+
+# Executable dosya upload'ını engelle
+<FilesMatch "\.(php|phtml|php3|php4|php5|pl|py|jsp|asp|aspx|sh|cgi|exe|bat|cmd)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to directories
+Options -Indexes
+
+# Server signature'ı gizle
+ServerTokens Prod
+ServerSignature Off
+
+# Custom 404 page
+ErrorDocument 404 /index.html
+
+# WebP Support
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Check if browser supports WebP
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    
+    # Check if WebP replacement image exists
+    RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
+    
+    # Serve WebP image instead
+    RewriteRule (.+)\.(jpe?g|png)$ $1.webp [T=image/webp,E=accept:1]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header append Vary Accept env=REDIRECT_accept
+</IfModule>
+
+AddType image/webp .webp
+
+# Preload hints
+<IfModule mod_headers.c>
+    # Preload critical resources
+    <FilesMatch "index\.html$">
+        Header add Link "</new-style.css>; rel=preload; as=style"
+        Header add Link "</js/app.js>; rel=preload; as=script"
+        Header add Link "</images/og-image.jpg>; rel=preload; as=image"
+    </FilesMatch>
+</IfModule>
