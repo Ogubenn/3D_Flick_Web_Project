@@ -1074,7 +1074,7 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
             
-            // Tema değiştirme sistemi - Güçlendirilmiş
+            // Tema değiştirme sistemi - Güçlendirilmiş ve Anında Çalışan
             function toggleTheme() {
                 const html = document.documentElement;
                 const currentTheme = html.getAttribute('data-theme') || 'light';
@@ -1082,38 +1082,45 @@
                 
                 console.log('🌙 Tema değiştiriliyor:', currentTheme, '->', newTheme);
                 
-                // Tema değişikliği animasyonu için kısa bir fade effect
-                document.body.style.transition = 'opacity 0.2s ease';
-                document.body.style.opacity = '0.8';
+                // ANINDA tema değişimi - delay yok!
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
                 
-                setTimeout(() => {
-                    // Temayı değiştir
-                    html.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
+                // Tema butonunu anında güncelle
+                const themeToggle = document.getElementById('themeToggle');
+                if (themeToggle) {
+                    const newIcon = newTheme === 'dark' ? '☀️' : '🌙';
+                    const newTitle = newTheme === 'dark' ? 'Aydınlık Tema' : 'Karanlık Tema';
                     
-                    // Tema butonunu güncelle
-                    const themeToggle = document.getElementById('themeToggle');
-                    if (themeToggle) {
-                        themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-                        themeToggle.title = newTheme === 'dark' ? 'Aydınlık Tema' : 'Karanlık Tema';
-                        
-                        // Buton animasyonu
-                        themeToggle.style.transform = 'scale(1.2) rotate(180deg)';
-                        setTimeout(() => {
-                            themeToggle.style.transform = '';
-                        }, 300);
-                    }
+                    // İkon ve title'ı anında değiştir
+                    themeToggle.innerHTML = `<span aria-hidden="true">${newIcon}</span><span class="sr-only">Tema değiştir</span>`;
+                    themeToggle.setAttribute('aria-label', newTitle);
+                    themeToggle.title = newTitle;
                     
-                    // Opacity'yi geri getir
+                    // Buton animasyonu - opsiyonel
+                    themeToggle.style.transform = 'scale(1.1)';
                     setTimeout(() => {
-                        document.body.style.opacity = '1';
-                        setTimeout(() => {
-                            document.body.style.transition = '';
-                        }, 200);
-                    }, 50);
-                    
-                    console.log('✅ Tema başarıyla değiştirildi:', newTheme);
-                }, 100);
+                        themeToggle.style.transform = '';
+                    }, 150);
+                }
+                
+                // Body'ye smooth transition class ekle
+                document.body.classList.add('theme-transitioning');
+                setTimeout(() => {
+                    document.body.classList.remove('theme-transitioning');
+                }, 300);
+                
+                console.log('✅ Tema başarıyla ve anında değiştirildi:', newTheme);
+                
+                // Accessibility announcement
+                if (typeof AccessibilityManager !== 'undefined' && AccessibilityManager.announce) {
+                    AccessibilityManager.announce(`Tema ${newTheme === 'dark' ? 'karanlık' : 'aydınlık'} olarak değiştirildi`, 'polite');
+                }
+                
+                // Achievement tracking (eğer varsa)
+                if (window.achievements && window.achievements.onThemeChange) {
+                    window.achievements.onThemeChange();
+                }
             }
             
             // Tema değiştirme butonu - Güçlendirilmiş versiyon
@@ -1154,8 +1161,13 @@
             document.documentElement.setAttribute('data-theme', savedTheme);
             const themeToggle = document.getElementById('themeToggle');
             if (themeToggle) {
-                themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+                const icon = savedTheme === 'dark' ? '☀️' : '🌙';
+                const title = savedTheme === 'dark' ? 'Aydınlık Tema' : 'Karanlık Tema';
+                themeToggle.innerHTML = `<span aria-hidden="true">${icon}</span><span class="sr-only">Tema değiştir</span>`;
+                themeToggle.setAttribute('aria-label', title);
+                themeToggle.title = title;
             }
+            console.log('✅ Tema yüklendi:', savedTheme);
             
             console.log('🎉 Modal sistemi hazır! Modaller:', document.querySelectorAll('.modal-overlay').length);
             

@@ -605,15 +605,36 @@ class STLGenerator {
         }
     }
 
-    // Theme Management - Basitleştirildi
+    // Theme Management - Güncellenmiş ve Anında Çalışan
     toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute('data-theme') || 'light';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
-        document.documentElement.setAttribute('data-theme', newTheme);
+        console.log('🎨 App.js tema değişimi:', currentTheme, '->', newTheme);
+        
+        // ANINDA tema değişimi
+        html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         
-        // Theme butonu kaldırıldı
+        // Tema butonunu güncelle (eğer varsa)
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            const newIcon = newTheme === 'dark' ? '☀️' : '🌙';
+            const newTitle = newTheme === 'dark' ? 'Aydınlık Tema' : 'Karanlık Tema';
+            
+            themeToggle.innerHTML = `<span aria-hidden="true">${newIcon}</span><span class="sr-only">Tema değiştir</span>`;
+            themeToggle.setAttribute('aria-label', newTitle);
+            themeToggle.title = newTitle;
+        }
+        
+        // Smooth transition için class ekle
+        document.body.classList.add('theme-transitioning');
+        setTimeout(() => {
+            document.body.classList.remove('theme-transitioning');
+        }, 300);
+        
+        console.log('✅ App.js tema değişimi tamamlandı:', newTheme);
         
         // Track achievement
         if (window.achievements) {
@@ -802,9 +823,20 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 3D Flick yeni sistemi başlatılıyor...');
     window.app = new STLGenerator();
     
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    // Load saved theme - Buton güncellemesi ile birlikte
+    const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Tema butonunu başlangıçta güncelle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        const icon = savedTheme === 'dark' ? '☀️' : '🌙';
+        const title = savedTheme === 'dark' ? 'Aydınlık Tema' : 'Karanlık Tema';
+        themeToggle.innerHTML = `<span aria-hidden="true">${icon}</span><span class="sr-only">Tema değiştir</span>`;
+        themeToggle.setAttribute('aria-label', title);
+        themeToggle.title = title;
+    }
+    console.log('🎨 App.js tema yüklendi:', savedTheme);
     
     // STL Upload sistemini başlat
     console.log('📤 STL Upload sistemi başlatılıyor...');
