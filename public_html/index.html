@@ -449,27 +449,200 @@
             </div>
         </div>
 
-        <!-- Stats Modal -->
+        <!-- Enhanced Stats Modal -->
         <div class="modal-overlay" id="statsModal">
-            <div class="modal-content">
+            <div class="modal-content stats-modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title">📊 İstatistikler</h2>
+                    <h2 class="modal-title">📊 Detaylı İstatistikler</h2>
                     <button class="modal-close">×</button>
                 </div>
-                <div class="modal-body">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-icon">📅</div>
-                            <div class="stat-info">
+                <div class="modal-body stats-modal-body">
+                    
+                    <!-- Main Stats Grid -->
+                    <div class="stats-overview">
+                        <div class="stats-grid-enhanced">
+                            <div class="stat-card-enhanced">
+                                <div class="stat-card-header">
+                                    <div class="stat-icon">📅</div>
+                                    <div class="stat-trend" id="dailyTrend">+0%</div>
+                                </div>
                                 <div class="stat-value" id="dailyModelsStats">0</div>
                                 <div class="stat-label">Bugünkü Model</div>
+                                <div class="stat-progress">
+                                    <div class="progress-bar-mini">
+                                        <div class="progress-fill" id="dailyProgressFill" style="width: 0%"></div>
+                                    </div>
+                                    <span class="progress-text" id="dailyProgressText">0/1</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-icon">🏆</div>
-                            <div class="stat-info">
+
+                            <div class="stat-card-enhanced">
+                                <div class="stat-card-header">
+                                    <div class="stat-icon">🏆</div>
+                                    <div class="stat-trend" id="totalTrend">+0%</div>
+                                </div>
                                 <div class="stat-value" id="totalModelsStats">0</div>
                                 <div class="stat-label">Toplam Model</div>
+                                <div class="stat-progress">
+                                    <div class="progress-bar-mini">
+                                        <div class="progress-fill" id="totalProgressFill" style="width: 75%"></div>
+                                    </div>
+                                    <span class="progress-text">Level <span id="userLevelDisplay">1</span></span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card-enhanced">
+                                <div class="stat-card-header">
+                                    <div class="stat-icon">🔥</div>
+                                    <div class="stat-trend" id="streakTrend">+0%</div>
+                                </div>
+                                <div class="stat-value" id="currentStreakStats">0</div>
+                                <div class="stat-label">Mevcut Seri</div>
+                                <div class="stat-progress">
+                                    <div class="progress-bar-mini">
+                                        <div class="progress-fill" id="streakProgressFill" style="width: 60%"></div>
+                                    </div>
+                                    <span class="progress-text">Rekor: <span id="maxStreakStats">0</span></span>
+                                </div>
+                            </div>
+
+                            <div class="stat-card-enhanced">
+                                <div class="stat-card-header">
+                                    <div class="stat-icon">⭐</div>
+                                    <div class="stat-trend" id="achievementsTrend">+0%</div>
+                                </div>
+                                <div class="stat-value" id="achievementsUnlockedStats">0</div>
+                                <div class="stat-label">Başarımlar</div>
+                                <div class="stat-progress">
+                                    <div class="progress-bar-mini">
+                                        <div class="progress-fill" id="achievementsProgressFill" style="width: 45%"></div>
+                                    </div>
+                                    <span class="progress-text" id="achievementProgressText">0/35</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Time Analytics -->
+                    <div class="stats-section">
+                        <h3 class="section-title">📈 Zaman Analizi</h3>
+                        <div class="time-stats-grid">
+                            <div class="time-stat-card">
+                                <div class="time-stat-header">
+                                    <span class="time-icon">📊</span>
+                                    <span class="time-title">Bu Hafta</span>
+                                </div>
+                                <div class="time-stat-value" id="weeklyModelsStats">0</div>
+                                <div class="time-stat-progress">
+                                    <div class="circular-progress" data-percentage="0" id="weeklyCircularProgress">
+                                        <div class="circle-text">0%</div>
+                                    </div>
+                                </div>
+                                <div class="time-stat-label">Hedef: 5 Model</div>
+                            </div>
+
+                            <div class="time-stat-card">
+                                <div class="time-stat-header">
+                                    <span class="time-icon">📅</span>
+                                    <span class="time-title">Bu Ay</span>
+                                </div>
+                                <div class="time-stat-value" id="monthlyModelsStats">0</div>
+                                <div class="time-stat-progress">
+                                    <div class="circular-progress" data-percentage="0" id="monthlyCircularProgress">
+                                        <div class="circle-text">0%</div>
+                                    </div>
+                                </div>
+                                <div class="time-stat-label">Hedef: 20 Model</div>
+                            </div>
+
+                            <div class="time-stat-card">
+                                <div class="time-stat-header">
+                                    <span class="time-icon">⏰</span>
+                                    <span class="time-title">En Aktif Saat</span>
+                                </div>
+                                <div class="time-stat-value" id="mostActiveHour">14:00</div>
+                                <div class="time-stat-chart">
+                                    <div class="activity-bars">
+                                        <div class="activity-bar" style="height: 20%"></div>
+                                        <div class="activity-bar" style="height: 40%"></div>
+                                        <div class="activity-bar" style="height: 80%"></div>
+                                        <div class="activity-bar" style="height: 60%"></div>
+                                        <div class="activity-bar" style="height: 90%"></div>
+                                    </div>
+                                </div>
+                                <div class="time-stat-label">En verimli saatiniz</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Metrics -->
+                    <div class="stats-section">
+                        <h3 class="section-title">🎯 Performans Metrikleri</h3>
+                        <div class="performance-grid">
+                            <div class="performance-card">
+                                <div class="performance-icon">📈</div>
+                                <div class="performance-content">
+                                    <div class="performance-title">Ortalama Kullanım</div>
+                                    <div class="performance-value" id="avgUsageStats">0.8 model/gün</div>
+                                    <div class="performance-change positive">+15% bu hafta</div>
+                                </div>
+                            </div>
+
+                            <div class="performance-card">
+                                <div class="performance-icon">⏱️</div>
+                                <div class="performance-content">
+                                    <div class="performance-title">Toplam Aktif Gün</div>
+                                    <div class="performance-value" id="activeDaysStats">0 gün</div>
+                                    <div class="performance-change positive">Sürekli artan</div>
+                                </div>
+                            </div>
+
+                            <div class="performance-card">
+                                <div class="performance-icon">🏅</div>
+                                <div class="performance-content">
+                                    <div class="performance-title">Başarım Oranı</div>
+                                    <div class="performance-value" id="achievementRateStats">0%</div>
+                                    <div class="performance-change" id="achievementRateChange">Hesaplanıyor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Goals Section -->
+                    <div class="stats-section">
+                        <h3 class="section-title">🎖️ Hedefler & İlerleme</h3>
+                        <div class="goals-container">
+                            <div class="goal-item">
+                                <div class="goal-header">
+                                    <span class="goal-title">Haftalık Hedef</span>
+                                    <span class="goal-status" id="weeklyGoalStatus">0/5</span>
+                                </div>
+                                <div class="goal-progress-bar">
+                                    <div class="goal-progress-fill" id="weeklyGoalProgress" style="width: 0%"></div>
+                                </div>
+                                <div class="goal-description">5 model oluştur ve özel rozet kazan!</div>
+                            </div>
+
+                            <div class="goal-item">
+                                <div class="goal-header">
+                                    <span class="goal-title">Seri Hedefi</span>
+                                    <span class="goal-status" id="streakGoalStatus">0/7</span>
+                                </div>
+                                <div class="goal-progress-bar">
+                                    <div class="goal-progress-fill" id="streakGoalProgress" style="width: 0%"></div>
+                                </div>
+                                <div class="goal-description">7 gün üst üste model oluştur!</div>
+                            </div>
+
+                            <div class="goal-item">
+                                <div class="goal-header">
+                                    <span class="goal-title">Başarım Avcısı</span>
+                                    <span class="goal-status" id="achievementGoalStatus">0/10</span>
+                                </div>
+                                <div class="goal-progress-bar">
+                                    <div class="goal-progress-fill" id="achievementGoalProgress" style="width: 0%"></div>
+                                </div>
+                                <div class="goal-description">10 farklı başarım kilidi aç!</div>
                             </div>
                         </div>
                     </div>

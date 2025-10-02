@@ -158,6 +158,11 @@ class STLGenerator {
             // Update counters
             this.updateGenerationCount();
             
+            // Record model generation for enhanced stats
+            if (typeof recordModelGeneration === 'function') {
+                recordModelGeneration();
+            }
+            
             // Update UI
             this.updateUI();
             
@@ -1826,10 +1831,30 @@ document.addEventListener('DOMContentLoaded', () => {
 function showStatsModal() {
     const statsModal = document.getElementById('statsModal');
     if (statsModal) {
-        statsModal.style.display = 'block';
-        updateStatsDisplay();
+        statsModal.style.display = 'flex';
+        statsModal.classList.add('show');
+        
+        // Modal içeriğine show class ekle (animasyon için)
+        const modalContent = statsModal.querySelector('.stats-modal-content');
+        if (modalContent) {
+            setTimeout(() => {
+                modalContent.classList.add('show');
+            }, 100);
+        }
+        
+        // İstatistikleri güncelle
+        if (typeof updateStats === 'function') {
+            updateStats();
+        }
+        
+        // Animasyonları başlat
+        if (typeof startStatsAnimations === 'function') {
+            startStatsAnimations();
+        }
+        
+        console.log('📊 Enhanced stats modal opened');
     } else {
-        createStatsModal();
+        console.log('❌ Stats modal not found');
     }
 }
 
@@ -2046,7 +2071,19 @@ function handleFeedbackSubmit(e) {
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
-        modal.style.display = 'none';
+        modal.classList.remove('show');
+        
+        // Stats modal için özel işlem
+        if (modalId === 'statsModal') {
+            const modalContent = modal.querySelector('.stats-modal-content');
+            if (modalContent) {
+                modalContent.classList.remove('show');
+            }
+        }
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 300);
     }
 }
 
