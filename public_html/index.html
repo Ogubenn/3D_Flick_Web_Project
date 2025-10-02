@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr" data-theme="light">
+<html lang="tr">
 <head>
     <!-- ========================================= -->
     <!-- SEO ve META ETİKETLERİ - Optimize Edildi -->
@@ -142,6 +142,15 @@
         },
         "keywords": "3D model, STL, ücretsiz, 3D yazıcı, günlük model"
     }
+    </script>
+    
+    <!-- Tema yükleme - FOUC (Flash of Unstyled Content) önlemek için -->
+    <script>
+        // Sayfa yüklenmeden önce temayı ayarla
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
     </script>
 </head>
 <body>
@@ -651,20 +660,342 @@
         </div>
 
         <!-- Info Modal -->
+        <!-- Enhanced Info & Support Modal -->
         <div class="modal-overlay" id="infoModal">
-            <div class="modal-content">
+            <div class="modal-content info-support-modal">
                 <div class="modal-header">
-                    <h2 class="modal-title">ℹ️ Bilgi & Yardım</h2>
+                    <h2 class="modal-title">ℹ️ Bilgi & Destek Merkezi</h2>
                     <button class="modal-close" data-modal="infoModal">×</button>
                 </div>
                 <div class="modal-body">
-                    <h3>🎯 Nasıl Çalışır?</h3>
-                    <ul>
-                        <li>Her gün bir kere ücretsiz 3D model oluşturabilirsiniz</li>
-                        <li>Model otomatik olarak STL formatında indirilir</li>
-                        <li>24 saat sonra yeni hakkınız gelir</li>
-                        <li>Başarımlar kazanarak ilerleme kaydedin</li>
-                    </ul>
+                    <!-- Tab Navigation -->
+                    <div class="info-tabs">
+                        <button class="info-tab active" data-tab="how-it-works">
+                            <span class="tab-icon">🎯</span>
+                            <span class="tab-text">Nasıl Çalışır</span>
+                        </button>
+                        <button class="info-tab" data-tab="faq">
+                            <span class="tab-icon">❓</span>
+                            <span class="tab-text">SSS</span>
+                        </button>
+                        <button class="info-tab" data-tab="contact">
+                            <span class="tab-icon">💬</span>
+                            <span class="tab-text">İletişim</span>
+                        </button>
+                        <button class="info-tab" data-tab="about">
+                            <span class="tab-icon">👥</span>
+                            <span class="tab-text">Hakkımızda</span>
+                        </button>
+                    </div>
+
+                    <!-- Tab Contents -->
+                    <div class="info-tab-content">
+                        <!-- How It Works Tab -->
+                        <div class="tab-pane active" id="how-it-works">
+                            <h3 class="pane-title">🎯 Nasıl Çalışır?</h3>
+                            
+                            <div class="info-steps">
+                                <div class="info-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Model Oluştur</h4>
+                                        <p>Ana sayfadaki butona tıklayarak günlük ücretsiz 3D modelinizi oluşturun</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Otomatik İndirme</h4>
+                                        <p>Model STL formatında otomatik olarak bilgisayarınıza indirilir</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>3D Yazdırma</h4>
+                                        <p>İndirdiğiniz STL dosyasını 3D yazıcınızla yazdırabilirsiniz</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>24 Saat Sonra Tekrar</h4>
+                                        <p>Yeni hakkınız geldiğinde yeni bir model oluşturabilirsiniz</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="feature-highlights">
+                                <h4>✨ Özellikler</h4>
+                                <div class="highlights-grid">
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🎲</span>
+                                        <span class="highlight-text">Tamamen Rastgele Modeller</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">📁</span>
+                                        <span class="highlight-text">STL Format Desteği</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">💯</span>
+                                        <span class="highlight-text">100% Ücretsiz</span>
+                                    </div>
+                                    <div class="highlight-item">
+                                        <span class="highlight-icon">🏆</span>
+                                        <span class="highlight-text">Başarım Sistemi</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Tab -->
+                        <div class="tab-pane" id="faq">
+                            <h3 class="pane-title">❓ Sık Sorulan Sorular</h3>
+                            
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>❓ Günde kaç model oluşturabilirim?</span>
+                                        <span class="faq-arrow">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        <p>Ücretsiz kullanıcılar günde 1 model oluşturabilir. Her 24 saatte bir yeni hakkınız gelir. Premium üyelikle sınırsız model oluşturabilirsiniz.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>📁 Hangi dosya formatlarını destekliyorsunuz?</span>
+                                        <span class="faq-arrow">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        <p>Şu anda sadece STL formatını destekliyoruz. STL, 3D yazıcılar için en yaygın kullanılan formattır ve tüm 3D yazıcı yazılımlarıyla uyumludur.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>🎨 Model tasarımını özelleştirebilir miyim?</span>
+                                        <span class="faq-arrow">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        <p>Şu anda modeller tamamen rastgele üretiliyor. Ancak yakında özelleştirme seçenekleri eklenecek!</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>💳 Premium üyelik var mı?</span>
+                                        <span class="faq-arrow">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        <p>Evet! Premium üyelikle sınırsız model oluşturma, özel kategoriler, detaylı istatistikler ve daha fazlasına erişebilirsiniz.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>🔒 Verilerim güvende mi?</span>
+                                        <span class="faq-arrow">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        <p>Evet! Tüm verileriniz şifrelenir ve güvenli bir şekilde saklanır. Gizlilik politikamızı okuyarak detaylı bilgi alabilirsiniz.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <button class="faq-question">
+                                        <span>📱 Mobil uygulama var mı?</span>
+                                        <span class="faq-arrow">▼</span>
+                                    </button>
+                                    <div class="faq-answer">
+                                        <p>Web sitemiz mobil uyumludur ve tüm cihazlarda sorunsuz çalışır. Yakında iOS ve Android uygulamalarımız da yayınlanacak!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Tab -->
+                        <div class="tab-pane" id="contact">
+                            <h3 class="pane-title">💬 İletişim</h3>
+                            
+                            <div class="contact-section">
+                                <p class="contact-intro">
+                                    Sorularınız, önerileriniz veya geri bildirimleriniz için bizimle iletişime geçin!
+                                </p>
+
+                                <form class="contact-form" id="contactForm">
+                                    <div class="form-group">
+                                        <label for="contactName">
+                                            <span class="label-icon">👤</span>
+                                            İsim
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            id="contactName" 
+                                            name="name" 
+                                            placeholder="Adınız Soyadınız"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="contactEmail">
+                                            <span class="label-icon">📧</span>
+                                            E-posta
+                                        </label>
+                                        <input 
+                                            type="email" 
+                                            id="contactEmail" 
+                                            name="email" 
+                                            placeholder="email@example.com"
+                                            required
+                                        >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="contactSubject">
+                                            <span class="label-icon">📝</span>
+                                            Konu
+                                        </label>
+                                        <select id="contactSubject" name="subject" required>
+                                            <option value="">Bir konu seçin</option>
+                                            <option value="question">❓ Soru</option>
+                                            <option value="suggestion">💡 Öneri</option>
+                                            <option value="bug">🐛 Hata Bildirimi</option>
+                                            <option value="other">📋 Diğer</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="contactMessage">
+                                            <span class="label-icon">💬</span>
+                                            Mesajınız
+                                        </label>
+                                        <textarea 
+                                            id="contactMessage" 
+                                            name="message" 
+                                            rows="5"
+                                            placeholder="Mesajınızı buraya yazın..."
+                                            required
+                                        ></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn-primary contact-submit">
+                                        <span class="btn-icon">📤</span>
+                                        <span>Gönder</span>
+                                    </button>
+                                </form>
+
+                                <div class="contact-methods">
+                                    <h4>📞 Diğer İletişim Yöntemleri</h4>
+                                    <div class="contact-methods-grid">
+                                        <a href="mailto:info@3dflick.com" class="contact-method email-method">
+                                            <svg class="method-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                                <polyline points="22,6 12,13 2,6"/>
+                                            </svg>
+                                        </a>
+                                        <a href="https://twitter.com/3dflick" target="_blank" class="contact-method twitter-method">
+                                            <svg class="method-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="https://instagram.com/3dflick" target="_blank" class="contact-method instagram-method">
+                                            <svg class="method-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- About Tab -->
+                        <div class="tab-pane" id="about">
+                            <h3 class="pane-title">👥 Hakkımızda</h3>
+                            
+                            <div class="about-content">
+                                <div class="about-intro">
+                                    <p>
+                                        <strong>3D Flick</strong>, 3D baskı tutkunları için tasarlanmış ücretsiz bir 3D model oluşturma platformudur.
+                                    </p>
+                                    <p>
+                                        Misyonumuz, herkesin 3D baskı dünyasına kolayca adım atmasını sağlamak ve 
+                                        günlük olarak yeni, ilginç ve ücretsiz modeller sunmaktır.
+                                    </p>
+                                </div>
+
+                                <div class="about-stats">
+                                    <div class="about-stat">
+                                        <div class="stat-number">10K+</div>
+                                        <div class="stat-label">Aktif Kullanıcı</div>
+                                    </div>
+                                    <div class="about-stat">
+                                        <div class="stat-number">50K+</div>
+                                        <div class="stat-label">Oluşturulan Model</div>
+                                    </div>
+                                    <div class="about-stat">
+                                        <div class="stat-number">100%</div>
+                                        <div class="stat-label">Ücretsiz</div>
+                                    </div>
+                                </div>
+
+                                <div class="about-features">
+                                    <h4>💫 Neden 3D Flick?</h4>
+                                    <ul>
+                                        <li>✅ Günlük ücretsiz model oluşturma</li>
+                                        <li>✅ Kayıt gerektirmeden kullanım</li>
+                                        <li>✅ STL format desteği</li>
+                                        <li>✅ Mobil uyumlu platform</li>
+                                        <li>✅ Başarım ve motivasyon sistemi</li>
+                                        <li>✅ Sürekli güncellenen içerik</li>
+                                    </ul>
+                                </div>
+
+                                <div class="about-team">
+                                    <h4>🚀 Geliştirici</h4>
+                                    <div class="team-info">
+                                        <p>
+                                            <strong>ogubenn.com.tr</strong> tarafından geliştirilmiştir.
+                                        </p>
+                                        <a href="https://ogubenn.com.tr" target="_blank" class="team-link">
+                                            🌐 ogubenn.com.tr'yi ziyaret edin
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="about-social">
+                                    <h4>🌟 Sosyal Medya</h4>
+                                    <div class="social-links">
+                                        <a href="#" class="social-link twitter">
+                                            <svg class="social-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="social-link instagram">
+                                            <svg class="social-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="social-link github">
+                                            <svg class="social-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                                            </svg>
+                                        </a>
+                                        <a href="#" class="social-link discord">
+                                            <svg class="social-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -776,11 +1107,67 @@
                         </div>
 
                         <div class="gallery-grid" id="galleryGrid">
-                            <div class="empty-gallery">
+                            <!-- Örnek 3D Model -->
+                            <div class="gallery-item" data-category="cube">
+                                <div class="gallery-item-header">
+                                    <div class="item-badge">STL</div>
+                                    <div class="item-actions">
+                                        <button class="item-action-btn" aria-label="Favorilere ekle" title="Favorilere ekle">
+                                            <span>⭐</span>
+                                        </button>
+                                        <button class="item-action-btn" aria-label="Sil" title="Sil">
+                                            <span>🗑️</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="gallery-item-preview">
+                                    <div class="model-placeholder">
+                                        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <!-- 3D Küp illüstrasyonu -->
+                                            <path d="M50 10 L85 30 L85 70 L50 90 L15 70 L15 30 Z" fill="url(#cubeGradient)" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M50 10 L50 50 M50 50 L85 70 M50 50 L15 70" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+                                            <defs>
+                                                <linearGradient id="cubeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.8" />
+                                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.6" />
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                        <div class="model-stats">
+                                            <span>🔺 2.4K</span>
+                                            <span>📐 50mm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gallery-item-info">
+                                    <h4 class="item-title">Rastgele Küp</h4>
+                                    <div class="item-meta">
+                                        <span class="item-date">🕒 Bugün 14:30</span>
+                                        <span class="item-size">💾 1.2 MB</span>
+                                    </div>
+                                    <div class="item-tags">
+                                        <span class="tag">Geometrik</span>
+                                        <span class="tag">Basit</span>
+                                    </div>
+                                </div>
+                                <div class="gallery-item-actions">
+                                    <button class="btn-secondary" style="flex: 1;">
+                                        <span>👁️</span>
+                                        <span>Önizle</span>
+                                    </button>
+                                    <button class="btn-primary" style="flex: 1;">
+                                        <span>⬇️</span>
+                                        <span>İndir</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Boş galeri mesajı (yorum satırında) -->
+                            <!-- <div class="empty-gallery">
                                 <div class="empty-icon">📁</div>
                                 <div class="empty-title">Henüz figür yüklenmemiş</div>
                                 <div class="empty-subtitle">İlk STL dosyanızı yükleyerek başlayın!</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -846,7 +1233,7 @@
                     <div class="footer-section">
                         <h4 class="footer-title">İletişim</h4>
                         <ul class="footer-list">
-                            <li><a href="#" class="footer-link">💬 İletişim</a></li>
+                            <li><a href="#" class="footer-link" id="footerContactLink" data-modal="infoModal" data-tab="contact">💬 İletişim</a></li>
                         </ul>
                     </div>
                     
@@ -880,13 +1267,13 @@
                             </svg>
                         </a>
                         <a href="#" class="social-link linkedin" title="LinkedIn">
-                            <svg viewBox="0 0 24 24" width="20" height="20">
+                            <svg class="footer-social-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                             </svg>
                         </a>
                         <a href="#" class="social-link github" title="GitHub">
-                            <svg viewBox="0 0 24 24" width="20" height="20">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            <svg class="footer-social-svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
                             </svg>
                         </a>
                     </div>
@@ -1264,10 +1651,12 @@
                 if (themeToggle) {
                     const newIcon = newTheme === 'dark' ? '☀️' : '🌙';
                     const newTitle = newTheme === 'dark' ? 'Aydınlık Tema' : 'Karanlık Tema';
+                    const isPressed = newTheme === 'dark' ? 'true' : 'false';
                     
-                    // İkon ve title'ı anında değiştir
+                    // İkon, title ve aria-pressed'i anında değiştir
                     themeToggle.innerHTML = `<span aria-hidden="true">${newIcon}</span><span class="sr-only">Tema değiştir</span>`;
                     themeToggle.setAttribute('aria-label', newTitle);
+                    themeToggle.setAttribute('aria-pressed', isPressed);
                     themeToggle.title = newTitle;
                     
                     // Buton animasyonu - opsiyonel
@@ -1329,15 +1718,15 @@
                 window.location.reload();
             });
             
-            // Sayfa yüklendiğinde tema ayarını uygula
+            // Sayfa yüklendiğinde tema butonunu güncelle (tema zaten head'de ayarlandı)
             const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
             const themeToggle = document.getElementById('themeToggle');
             if (themeToggle) {
                 const icon = savedTheme === 'dark' ? '☀️' : '🌙';
                 const title = savedTheme === 'dark' ? 'Aydınlık Tema' : 'Karanlık Tema';
                 themeToggle.innerHTML = `<span aria-hidden="true">${icon}</span><span class="sr-only">Tema değiştir</span>`;
                 themeToggle.setAttribute('aria-label', title);
+                themeToggle.setAttribute('aria-pressed', 'false');
                 themeToggle.title = title;
             }
             console.log('✅ Tema yüklendi:', savedTheme);
@@ -1653,6 +2042,157 @@
                 // Giriş yap işlemi (örnek)
                 alert('Giriş yap sayfası açılacak...');
                 closeModal('loginModal');
+            });
+            
+            // ==========================================
+            // ENHANCED INFO & SUPPORT MODAL FUNCTIONS
+            // ==========================================
+            
+            // Tab switching functionality
+            const infoTabs = document.querySelectorAll('.info-tab');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            infoTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and panes
+                    infoTabs.forEach(t => t.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding pane
+                    this.classList.add('active');
+                    document.getElementById(targetTab)?.classList.add('active');
+                    
+                    // Scroll to top of modal content
+                    const modalBody = document.querySelector('#infoModal .modal-body');
+                    if (modalBody) {
+                        modalBody.scrollTop = 0;
+                    }
+                    
+                    console.log('📑 Tab değiştirildi:', targetTab);
+                });
+            });
+            
+            // FAQ accordion functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const faqItem = this.parentElement;
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close all other FAQs
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Toggle current FAQ
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
+                    
+                    console.log('❓ FAQ açıldı/kapatıldı');
+                });
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Form verilerini al
+                    const formData = new FormData(this);
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        subject: formData.get('subject'),
+                        message: formData.get('message')
+                    };
+                    
+                    console.log('📧 İletişim formu gönderiliyor:', data);
+                    
+                    // Burada normalde bir API çağrısı yapılır
+                    // Şimdilik sadece başarı mesajı gösterelim
+                    
+                    // Loading state
+                    const submitBtn = this.querySelector('.contact-submit');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="btn-icon">⏳</span><span>Gönderiliyor...</span>';
+                    
+                    // Simulated API call
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<span class="btn-icon">✅</span><span>Gönderildi!</span>';
+                        submitBtn.style.background = '#22c55e';
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Show success message
+                        alert('✅ Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
+                        
+                        // Reset button after 3 seconds
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.background = '';
+                        }, 3000);
+                        
+                        console.log('✅ İletişim formu başarıyla gönderildi');
+                    }, 1500);
+                });
+            }
+            
+            // Footer iletişim linki - Modal aç ve İletişim tab'ına geç
+            const footerContactLink = document.getElementById('footerContactLink');
+            if (footerContactLink) {
+                footerContactLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Modal'ı aç
+                    openModal('infoModal');
+                    
+                    // Biraz bekle ki modal açılsın, sonra İletişim tab'ına geç
+                    setTimeout(() => {
+                        // Tüm tabları pasif yap
+                        document.querySelectorAll('.info-tab').forEach(t => t.classList.remove('active'));
+                        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                        
+                        // İletişim tab'ını aktif et
+                        const contactTab = document.querySelector('.info-tab[data-tab="contact"]');
+                        const contactPane = document.getElementById('contact');
+                        
+                        if (contactTab && contactPane) {
+                            contactTab.classList.add('active');
+                            contactPane.classList.add('active');
+                        }
+                        
+                        console.log('📧 Footer iletişim linki ile modal açıldı - İletişim tab aktif');
+                    }, 100);
+                });
+            }
+            
+            // Modal açıldığında ilk tab'ı aktif et
+            document.addEventListener('modal-opened', function(e) {
+                if (e.detail.modalId === 'infoModal') {
+                    // İlk tab'ı aktif et
+                    const firstTab = document.querySelector('.info-tab');
+                    const firstPane = document.querySelector('.tab-pane');
+                    
+                    if (firstTab && firstPane) {
+                        // Önce tümünü pasif yap
+                        document.querySelectorAll('.info-tab').forEach(t => t.classList.remove('active'));
+                        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                        
+                        // İlk tab ve pane'i aktif et
+                        firstTab.classList.add('active');
+                        firstPane.classList.add('active');
+                    }
+                    
+                    console.log('📖 Info modal açıldı');
+                }
             });
             
             // Sayfa yüklendiğinde verileri yükle
